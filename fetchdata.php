@@ -47,37 +47,57 @@ for ($i = 0; $i < count($keys); $i++){
         $url = $feeds[$key][$j];
         print('Extracting ' . $url . PHP_EOL);
 
-        $use_atom = !(strpos($url, '/atom') == false);
-
         try {
-            if ($use_atom) $feed = Feed::loadAtom($url);
-            else $feed = Feed::loadRss($url);
+            $feed = simplexml_load_string(implode(file($url)));
+
+            if (isset($feed->entry)){
+                $entries = $feed->entry;
+                $use_atom = true;
+            } elseif (isset($feed->feed) && isset($feed->feed->entry)) {
+                $entries = $feed->feed->entry;
+                $use_atom = true;
+            } else {
+                $entries = $feed->channel->item;
+                $use_atom = false;
+            }
         } catch (Exception $e){
             // Skip
             print("ERROR" . PHP_EOL);
             continue;
         }
 
-        if ($use_atom) $entries = $feed->entry;
-        else $entries = $feed->items;
-
         foreach ($entries as $entry){
             $item = [];
             
-            try {
+            if ($use_atom) {
                 $item['id'] = (string) $entry->link->attributes()->{'href'};
-            } catch (Exception $e){
+            } else {
                 $item['id'] = (string) $entry->link;
             }
             $item['title'] = (string) $entry->title;
-            $item['summary'] = (string) $entry->summary;
+
+            if (isset($entry->description)) $item['summary'] = (string) $entry->description;
+            else if (isset($entry->children('yt', TRUE)->videoId)){
+                $item['type'] = 'VIDEO';
+                $item['id'] = 'https://youtube.com/embed/' . ((string) $entry->children('yt', TRUE)->videoId);
+                $item['summary'] = 'YouTube Video';
+            } else $item['summary'] = (string) $entry->summary;
+
             if (isset($entry->content)) $item['content'] = (string) $entry->content;
-            else if (isset($entry->{'content:encoded'})) $item['content'] = (string) $entry->{'content:encoded'};
-            $item['timestamp'] = (int) $entry->timestamp;
+            else if (isset($entry->children('content', TRUE)->encoded)) $item['content'] = (string) $entry->children('content', TRUE)->encoded;
+
+            if (strpos($item['id'], '/gallery/')) $item['type'] = 'GALLERY';
+            if (isset($entry->category) && strtolower($entry->category->attributes()->term) == 'news') $item['type'] = 'NEWS';
+            if (isset($item['content']) && strpos($item['content'], 'src="https://open.spotify.com/embed/episode/') !== false) $item['type'] = 'PODCAST';
+
+            if (isset($entry->pubDate)) $item['timestamp'] = (int) strtotime($entry->pubDate);
+            else if (isset($entry->published)) $item['timestamp'] = (int) strtotime($entry->published);
+            else $item['timestamp'] = (int) $entry->timestamp;
             $item['author'] = $key;
             
             if (isset($entry->enclosure)) $item['cover_image'] = (string) $entry->enclosure->attributes()->{'url'};
-            else if (isset($entry->{'media:group'})) $item['cover_image'] = (string) $entry->{'media:group'}->{'media:thumbnail'}->attributes()->{'url'};
+            else if (isset($entry->children('media', TRUE)->content)) $item['cover_image'] = (string) $entry->children('media', TRUE)->content->attributes()->url;
+            else if (isset($entry->children('media', TRUE)->group)) $item['cover_image'] = (string) $entry->children('media', TRUE)->group->children('media', TRUE)->thumbnail->attributes()->url;
 
             // print_r($item);
             print('| "' . $item['title'] . '" from ' . $item['author'] . PHP_EOL);
@@ -85,6 +105,7 @@ for ($i = 0; $i < count($keys); $i++){
             if (db::table('articles')->where('id', $item['id'])->first()){
                 db::table('articles')->where('id', $item['id'])->update($item);
             } else db::table('articles')->insert($item);
+            // sleep(10);
             
         }
 

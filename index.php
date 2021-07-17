@@ -29,14 +29,16 @@ use Illuminate\Container\Container;
 $capsule->setEventDispatcher(new Dispatcher(new Container));
 $capsule->setAsGlobal();
 
+$type = 'NEWS&ARTICLES';
 $loadArticle = false;
 $search = false;
 $authorSearch = false;
 $index = 1;
-if (isset($_GET['q'])) $search = filter_var($_GET['q'], FILTER_SANITIZE_STRING);
-if (isset($_GET['author'])) $search = filter_var($_GET['author'], FILTER_SANITIZE_STRING);
+if (isset($_GET['type']) && strlen($_GET['type']) > 0) $type = filter_var($_GET['type'], FILTER_SANITIZE_STRING);
+if (isset($_GET['q']) && strlen($_GET['q']) > 0) $search = filter_var($_GET['q'], FILTER_SANITIZE_STRING);
+if (isset($_GET['author']) && strlen($_GET['author']) > 0) $authorSearch = filter_var($_GET['author'], FILTER_SANITIZE_STRING);
 if (isset($_GET['p']) && (int) $_GET['p'] > 0) $index = (int) $_GET['p'];
-if (isset($_GET['a'])) $loadArticle = filter_var($_GET['a'], FILTER_SANITIZE_URL);
+if (isset($_GET['a']) && strlen($_GET['a']) > 0) $loadArticle = filter_var($_GET['a'], FILTER_SANITIZE_URL);
 
 $limit = 25;
 $offset = ($index - 1) * $limit;
@@ -49,6 +51,10 @@ if ($loadArticle === false){
         $data = $data->where('summary', 'LIKE', $search);
     } else if ($authorSearch !== false){
         $data = $data->where('author', $authorSearch);
+    } else if ($type == 'NEWS&ARTICLES') {
+        $data = $data->where('type', 'ARTICLE')->orWhere('type', 'NEWS');
+    } else {
+        $data = $data->where('type', strtoupper($type));
     }
 
     $data = $data->skip($offset)->take($limit)->orderBy('timestamp', 'desc')->get();
@@ -189,10 +195,28 @@ if ($loadArticle === false){
                 <h5 class="sidebar-title">Menu</h5>
                 <div class="sidebar-divider"></div>
                 <a href="/" class="sidebar-link sidebar-link-with-icon">
-                    <span class="sidebar-icon">
-                        <i class="bi bi-house" aria-hidden="true"></i>
+                    <span class="sidebar-icon text-white bg-primary">
+                        <i class="bi bi-newspaper" aria-hidden="true"></i>
                     </span>
-                    Home
+                    News & Articles
+                </a>
+                <a href="/?type=GALLERY" class="sidebar-link sidebar-link-with-icon">
+                    <span class="sidebar-icon text-dark bg-success">
+                        <i class="bi bi-images" aria-hidden="true"></i>
+                    </span>
+                    Gallery
+                </a>
+                <a href="/?type=PODCAST" class="sidebar-link sidebar-link-with-icon">
+                    <span class="sidebar-icon text-dark bg-secondary">
+                        <i class="bi bi-music-note-list" aria-hidden="true"></i>
+                    </span>
+                    Podcasts
+                </a>
+                <a href="/?type=VIDEO" class="sidebar-link sidebar-link-with-icon">
+                    <span class="sidebar-icon text-white bg-danger">
+                        <i class="bi bi-play-circle" aria-hidden="true"></i>
+                    </span>
+                    Videos
                 </a>
                 <br>
                 <h5 class="sidebar-title">Authors</h5>
@@ -217,6 +241,9 @@ if ($loadArticle === false){
                 <div class="container">
                     <?php if ($search !== false): ?>
                         <h1 class="p-20 m-0 pb-0">Search results for <b><?= $_GET['q'] ?></b></h1>
+                    <?php endif; ?>
+                    <?php if ($authorSearch !== false): ?>
+                        <h1 class="p-20 m-0 pb-0">Posts published by <b><?= $_GET['author'] ?></b></h1>
                     <?php endif; ?>
                     <div id="card-container" class="p-20">
                         <?php foreach ($data as $article): ?>
@@ -246,7 +273,26 @@ if ($loadArticle === false){
                                 <?php endif; ?>
                                 <div class="px-20">
                                     <p class="m-0">
-                                        <b><?= $article->author ?></b> &bull;
+                                        <b>
+                                            <?php switch($article->type){
+                                                case 'ARTICLE':
+                                                case 'NEWS':
+                                                    echo '<span class="badge badge-primary"><i class="bi bi-newspaper" aria-hidden="true"></i> ';
+                                                    break;
+                                                case 'GALLERY':
+                                                    echo '<span class="badge badge-success"><i class="bi bi-images" aria-hidden="true"></i> ';
+                                                    break;
+                                                case 'PODCAST':
+                                                    echo '<span class="badge badge-secondary"><i class="bi bi-music-note-list" aria-hidden="true"></i> ';
+                                                    break;
+                                                case 'VIDEO':
+                                                    echo '<span class="badge badge-danger"><i class="bi bi-play-circle" aria-hidden="true"></i> ';
+                                                    break;
+                                                default:
+                                                    echo '<span class="badge">';
+                                            } ?><?= $article->type ?></span>
+                                            <?= $article->author ?>
+                                        </b> &bull;
                                         <?php
                                             $article_time = new DateTime();
                                             $article_time->setTimestamp($article->timestamp);
@@ -263,7 +309,7 @@ if ($loadArticle === false){
                     </div>
                 </div>
             <?php else: ?>
-                <iframe <?= strlen($data[0]->content) > 0 ? 'class="d-none"' : '' ?> style="width: 100%; height: 100%; border:0;" src="<?= $data[0]->id ?>?utm_source=binustoday&utm_campaign=binustodayarticleview"></iframe>
+                <iframe <?= strlen($data[0]->content) > 0 ? 'class="d-none"' : '' ?> style="width: 100%; height: 100%; border:0;" src="<?= $data[0]->id ?>?utm_source=binustoday&utm_campaign=binustodayarticleview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <?php if (strlen($data[0]->content) > 0): ?>
                     <?php if (strlen($data[0]->cover_image) > 0): ?>
                         <img style="width: 100%; height: auto" src="<?= $data[0]->cover_image ?>">
