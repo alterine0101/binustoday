@@ -1,4 +1,5 @@
 <?php
+// Classifies the feeds to extract for
 $feeds = [
     // 'BINUS Group' => 'https://www.binus.edu/feed/atom/',
     'Bina Nusantara Computer Club (BNCC)' => [
@@ -78,31 +79,6 @@ $feeds = [
         'https://student-activity.binus.ac.id/bnec/gallery/feed/atom/?paged=2',
     ],
     'BVoice Radio' => [
-        'https://www.bvoiceradio.com/feed/atom/',
-        'https://www.bvoiceradio.com/feed/atom/?paged=2',
-        'https://www.bvoiceradio.com/feed/atom/?paged=3',
-        'https://www.bvoiceradio.com/feed/atom/?paged=4',
-        'https://www.bvoiceradio.com/feed/atom/?paged=5',
-        'https://www.bvoiceradio.com/feed/atom/?paged=6',
-        'https://www.bvoiceradio.com/feed/atom/?paged=7',
-        'https://www.bvoiceradio.com/feed/atom/?paged=8',
-        'https://www.bvoiceradio.com/feed/atom/?paged=9',
-        'https://www.bvoiceradio.com/feed/atom/?paged=10',
-        'https://www.bvoiceradio.com/feed/atom/?paged=11',
-        'https://www.bvoiceradio.com/feed/atom/?paged=12',
-        'https://www.bvoiceradio.com/feed/atom/?paged=13',
-        'https://www.bvoiceradio.com/feed/atom/?paged=14',
-        'https://www.bvoiceradio.com/feed/atom/?paged=15',
-        'https://www.bvoiceradio.com/feed/atom/?paged=16',
-        'https://www.bvoiceradio.com/feed/atom/?paged=17',
-        'https://www.bvoiceradio.com/feed/atom/?paged=18',
-        'https://www.bvoiceradio.com/feed/atom/?paged=19',
-        'https://www.bvoiceradio.com/feed/atom/?paged=20',
-        'https://www.bvoiceradio.com/feed/atom/?paged=21',
-        'https://www.bvoiceradio.com/feed/atom/?paged=22',
-        'https://www.bvoiceradio.com/feed/atom/?paged=23',
-        'https://www.bvoiceradio.com/feed/atom/?paged=24',
-        'https://www.bvoiceradio.com/feed/atom/?paged=25',
         'https://student-activity.binus.ac.id/bvoice/feed/atom/',
         'https://student-activity.binus.ac.id/bvoice/feed/atom/?paged=2',
         'https://student-activity.binus.ac.id/bvoice/feed/atom/?paged=3',
@@ -140,13 +116,6 @@ $feeds = [
         'https://dkv.binus.ac.id/feed/atom/?paged=3',
         'https://dkv.binus.ac.id/feed/atom/?paged=4',
         'https://dkv.binus.ac.id/feed/atom/?paged=5',
-    ],
-    'Filemagz by BNCC' => [
-        'https://www.filemagz.com/feed/atom/',
-        'https://www.filemagz.com/feed/atom/?paged=2',
-        'https://www.filemagz.com/feed/atom/?paged=3',
-        'https://www.filemagz.com/feed/atom/?paged=4',
-        'https://www.filemagz.com/feed/atom/?paged=5',
     ],
     'First Year Program (FYP)' => 'https://student.binus.ac.id/fyp/feed/atom/',
     'Himpunan Mahasiswa DKV (HIMDKV)' => [
@@ -206,6 +175,7 @@ $feeds = [
         'https://student-activity.binus.ac.id/nc/gallery/feed/atom/?paged=2',
     ],
     'Student BINUS' => [
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UCbObjb4NF91_t6csfgT4Bvg',
         'https://student.binus.ac.id/feed/atom/',
         'https://student.binus.ac.id/feed/atom/?paged=2',
         'https://student.binus.ac.id/feed/atom/?paged=3',
@@ -249,4 +219,10 @@ $feeds = [
         'https://student-activity.binus.ac.id/tfi/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/tfi/gallery/feed/atom/?paged=2',
     ],
+];
+
+// Classifies feeds which supports the WP-JSON APIs
+$feeds_wp_json = [
+    'BVoice Radio' => 'https://www.bvoiceradio.com/wp-json/wp/v2',
+    'Filemagz by BNCC' => 'https://www.filemagz.com/wp-json/wp/v2',
 ];

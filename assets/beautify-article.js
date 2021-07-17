@@ -17,7 +17,7 @@ for (i = 0; i < children0.length; i++){
             console.log(children1[0].outerText);
 
             // Replace <p> tags with "1. ABC" content to become <h3> subheadings
-            if (children1.length > 0 && children1[0].outerText.match(/^[1-9][0-9]*\s*[.:-][\w\W]+$/gi)){
+            if (children1.length > 0 && children1[0].outerText.matches(/^[1-9][0-9]*\s*[.:-][\w\W]+$/gi)){
                 var newElement = document.createElement("h3");
                 while (child0.firstChild) {
                     // Remove font-weight: 400;

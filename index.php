@@ -30,27 +30,28 @@ $capsule->setEventDispatcher(new Dispatcher(new Container));
 $capsule->setAsGlobal();
 
 $type = 'NEWS&ARTICLES';
-$loadArticle = false;
+$load_article = false;
 $search = false;
-$authorSearch = false;
+$author_search = false;
 $index = 1;
 if (isset($_GET['type']) && strlen($_GET['type']) > 0) $type = filter_var($_GET['type'], FILTER_SANITIZE_STRING);
 if (isset($_GET['q']) && strlen($_GET['q']) > 0) $search = filter_var($_GET['q'], FILTER_SANITIZE_STRING);
-if (isset($_GET['author']) && strlen($_GET['author']) > 0) $authorSearch = filter_var($_GET['author'], FILTER_SANITIZE_STRING);
+if (isset($_GET['author']) && strlen($_GET['author']) > 0) $author_search = filter_var($_GET['author'], FILTER_SANITIZE_STRING);
 if (isset($_GET['p']) && (int) $_GET['p'] > 0) $index = (int) $_GET['p'];
-if (isset($_GET['a']) && strlen($_GET['a']) > 0) $loadArticle = filter_var($_GET['a'], FILTER_SANITIZE_URL);
+if (isset($_GET['a']) && strlen($_GET['a']) > 0) $load_article = filter_var($_GET['a'], FILTER_SANITIZE_URL);
 
 $limit = 25;
 $offset = ($index - 1) * $limit;
 
 $data = db::table('articles');
+$not_found = false;
 
-if ($loadArticle === false){
+if ($load_article === false){
     if ($search !== false){
         $search = '%' . str_replace(' ', '%', $search) . '%';
         $data = $data->where('summary', 'LIKE', $search);
-    } else if ($authorSearch !== false){
-        $data = $data->where('author', $authorSearch);
+    } else if ($author_search !== false){
+        $data = $data->where('author', $author_search);
     } else if ($type == 'NEWS&ARTICLES') {
         $data = $data->where('type', 'ARTICLE')->orWhere('type', 'NEWS');
     } else {
@@ -59,7 +60,11 @@ if ($loadArticle === false){
 
     $data = $data->skip($offset)->take($limit)->orderBy('timestamp', 'desc')->get();
 } else {
-    $data = $data->where('id', $loadArticle)->get();
+    $data = $data->where('id', $load_article)->get();
+}
+if (count($data) == 0){
+    http_response_code(404);
+    $not_found = true;
 }
 
 ?>
@@ -236,18 +241,22 @@ if ($loadArticle === false){
         <!-- Sidebar end -->
 
         <!-- Content wrapper start -->
-        <div class="content-wrapper<?= ($loadArticle !== false && strlen($data[0]->content) == 0) ? ' overflow-hidden' : ''?>">
-            <?php if ($loadArticle === false): ?>
+        <div class="content-wrapper<?= ($load_article !== false && strlen($data[0]->content) == 0) ? ' overflow-hidden' : ''?>">
+            <?php if ($not_found): ?>
+                <div class="container">
+                    <h1>404: Not Found</h1>
+                </div>
+            <?php elseif ($load_article === false): ?>
                 <div class="container">
                     <?php if ($search !== false): ?>
                         <h1 class="p-20 m-0 pb-0">Search results for <b><?= $_GET['q'] ?></b></h1>
                     <?php endif; ?>
-                    <?php if ($authorSearch !== false): ?>
+                    <?php if ($author_search !== false): ?>
                         <h1 class="p-20 m-0 pb-0">Posts published by <b><?= $_GET['author'] ?></b></h1>
                     <?php endif; ?>
                     <div id="card-container" class="p-20">
                         <?php foreach ($data as $article): ?>
-                            <a class="card my-10 mx-0 p-0 text-decoration-none" href="/?a=<?= $article->id ?>">
+                            <a class="card my-10 mx-0 p-0 text-decoration-none" href="/?a=<?= urlencode($article->id) ?>">
                                 <?php if (strlen($article->cover_image) > 0): ?>
                                     <img style="width: 100%; height: auto" src="<?= $article->cover_image ?>" class="mb-10">
                                 <?php else: ?>
