@@ -226,7 +226,7 @@ if (count($data) == 0){
                 <br>
                 <h5 class="sidebar-title">Authors</h5>
                 <div class="sidebar-divider"></div>
-                <?php foreach(array_keys($feeds) as $feed): ?>
+                <?php foreach(array_keys($authors) as $feed): ?>
                     <a href="/?author=<?= $feed ?>" class="sidebar-link" style="font-weight:600;">
                         <?= $feed ?> <i class="bi bi-arrow-right-circle"></i>
                     </a>

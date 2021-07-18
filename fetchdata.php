@@ -60,7 +60,7 @@ for ($i = 0; $i < count($keys); $i++){
         print('Extracting ' . $url . PHP_EOL);
 
         if (str_starts_with($url, 'https://www.youtube.com/') && !$enable_youtube){
-            print('Skipping YouTube RSS parsing to prevent detection of automated queries. See https://support.google.com/websearch/answer/86640.' . PHP_EOL);
+            print('Skipping YouTube RSS parsing to prevent detection of automated queries. See https://support.google.com/websearch/answer/86640.' . PHP_EOL . PHP_EOL);
             continue;
         }
 
@@ -122,11 +122,10 @@ for ($i = 0; $i < count($keys); $i++){
             if (db::table('articles')->where('id', $item['id'])->first()){
                 db::table('articles')->where('id', $item['id'])->update($item);
             } else db::table('articles')->insert($item);
-            // sleep(10);
-            
         }
 
         print("DONE" . PHP_EOL . PHP_EOL);
+        sleep(10);
     }
 }
 
@@ -146,7 +145,7 @@ for ($i = 0; $i < count($keys); $i++){
         print('Extracting ' . $url . PHP_EOL);
 
         try {
-            $entries = json_decode(implode(file($url . '/posts?per_page=50&_embed')), true);
+            $entries = json_decode(implode(file($url)), true);
         } catch (Exception $e){
             // Skip
             print("ERROR" . PHP_EOL);
@@ -168,8 +167,21 @@ for ($i = 0; $i < count($keys); $i++){
 
             $item['timestamp'] = (int) strtotime($entry['date_gmt']);
             $item['author'] = $key;
-            
-            if (isset($entry['featured_media']) && isset($entry['_embedded'])) $item['cover_image'] = $entry['_embedded']['wp:featuredmedia'][0]['media_details']['sizes']['full']['source_url'];
+
+            if (isset($entry['_embedded']['wp:term'])) foreach ($entry['_embedded']['wp:term'] as $term){
+                if (count($term) == 0) continue;
+                $term = $term[0];
+                
+                if ($term['taxonomy'] == 'category') switch ($term['slug']){
+                    case 'news':
+                    case 'bnewshighlights': // BVoice Radio
+                    case 'tech-news': // Filemagz
+                    case 'event-news': // Filemagz
+                        $item['type'] = 'NEWS';
+                        break;
+                }
+            }
+            if (isset($entry['featured_media']) && isset($entry['_embedded'])) $item['cover_image'] = $entry['_embedded']['wp:featuredmedia'][0]['source_url'];
             
             // print_r($item);
             print('| "' . $item['title'] . '" from ' . $item['author'] . PHP_EOL);
@@ -177,10 +189,9 @@ for ($i = 0; $i < count($keys); $i++){
             if (db::table('articles')->where('id', $item['id'])->first()){
                 db::table('articles')->where('id', $item['id'])->update($item);
             } else db::table('articles')->insert($item);
-            // sleep(10);
-            
         }
 
         print("DONE" . PHP_EOL . PHP_EOL);
+        sleep(10);
     }
 }
