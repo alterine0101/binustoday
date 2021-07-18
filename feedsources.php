@@ -243,3 +243,4 @@ $feeds_wp_json = [
 $authors = [];
 foreach(array_keys($feeds) as $feed) $authors[$feed] = true;
 foreach(array_keys($feeds_wp_json) as $feed) $authors[$feed] = true;
+ksort($authors);

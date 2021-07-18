@@ -40,7 +40,7 @@ if (isset($_GET['author']) && strlen($_GET['author']) > 0) $author_search = filt
 if (isset($_GET['p']) && (int) $_GET['p'] > 0) $index = (int) $_GET['p'];
 if (isset($_GET['a']) && strlen($_GET['a']) > 0) $load_article = filter_var($_GET['a'], FILTER_SANITIZE_URL);
 
-$limit = 25;
+$limit = 50;
 $offset = ($index - 1) * $limit;
 
 $data = db::table('articles');
@@ -224,6 +224,33 @@ if (count($data) == 0){
                     Videos
                 </a>
                 <br>
+                <h5 class="sidebar-title">About</h5>
+                <div class="sidebar-divider"></div>
+                <a href="#" class="sidebar-link sidebar-link-with-icon">
+                    <span class="sidebar-icon">
+                        <i class="bi bi-question-circle-fill" aria-hidden="true"></i>
+                    </span>
+                    FAQ
+                </a>
+                <a href="#" class="sidebar-link sidebar-link-with-icon">
+                    <span class="sidebar-icon">
+                        <i class="bi bi-flag-fill" aria-hidden="true"></i>
+                    </span>
+                    Report Feed/Article
+                </a>
+                <a href="https://github.com/reinhart1010/binustoday" class="sidebar-link sidebar-link-with-icon" target="_blank">
+                    <span class="sidebar-icon">
+                        <i class="bi bi-code-slash" aria-hidden="true"></i>
+                    </span>
+                    GitHub <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+                </a>
+                <a href="https://saweria.co/reinhart1010" class="sidebar-link sidebar-link-with-icon" target="_blank">
+                    <span class="sidebar-icon">
+                        <i class="bi bi-cash-coin" aria-hidden="true"></i>
+                    </span>
+                    Donate <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+                </a>
+                <br>
                 <h5 class="sidebar-title">Authors</h5>
                 <div class="sidebar-divider"></div>
                 <?php foreach(array_keys($authors) as $feed): ?>
@@ -231,11 +258,6 @@ if (count($data) == 0){
                         <?= $feed ?> <i class="bi bi-arrow-right-circle"></i>
                     </a>
                 <?php endforeach; ?>
-                <br>
-                <h5 class="sidebar-title">About</h5>
-                <div class="sidebar-divider"></div>
-                <a href="#" class="sidebar-link">Version</a>
-                <a href="#" class="sidebar-link">Donate</a>
             </div>
         </div>
         <!-- Sidebar end -->
