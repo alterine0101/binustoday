@@ -34,10 +34,15 @@ $capsule->setEventDispatcher(new Dispatcher(new Container));
 $capsule->setAsGlobal();
 
 $enable_youtube = false;
+$youtube_only = false;
 
 global $argv;
 foreach ($argv as $arg){
     switch($arg){
+        case '--youtube-only':
+            $enable_youtube = true;
+            $youtube_only = true;
+            break;
         case '--enable-youtube':
             $enable_youtube = true;
             break;
@@ -59,8 +64,13 @@ for ($i = 0; $i < count($keys); $i++){
         $url = $feeds[$key][$j];
         print('Extracting ' . $url . PHP_EOL);
 
-        if (str_starts_with($url, 'https://www.youtube.com/') && !$enable_youtube){
+        $is_youtube = str_starts_with($url, 'https://www.youtube.com/');
+
+        if ($is_youtube && !$enable_youtube){
             print('Skipping YouTube RSS parsing to prevent detection of automated queries. See https://support.google.com/websearch/answer/86640.' . PHP_EOL . PHP_EOL);
+            continue;
+        } else if (!$is_youtube && $youtube_only){
+            print('Skipping parsing as user only wants to parse YouTube feeds' . PHP_EOL . PHP_EOL);
             continue;
         }
 
@@ -105,7 +115,7 @@ for ($i = 0; $i < count($keys); $i++){
 
             if (strpos($item['id'], '/gallery/') !== false) $item['type'] = 'GALLERY';
             if (isset($entry->category) && strtolower($entry->category->attributes()->term) == 'news') $item['type'] = 'NEWS';
-            if (isset($item['content']) && strpos($item['content'], 'src="https://open.spotify.com/embed/episode/') !== false) $item['type'] = 'PODCAST';
+            if (isset($item['content']) && strpos($item['content'], 'src="https://open.spotify.com/embed/') !== false) $item['type'] = 'PODCAST';
 
             if (isset($entry->pubDate)) $item['timestamp'] = (int) strtotime($entry->pubDate);
             else if (isset($entry->published)) $item['timestamp'] = (int) strtotime($entry->published);
@@ -132,7 +142,7 @@ for ($i = 0; $i < count($keys); $i++){
 // Extract WP-JSON feeds
 $keys = array_keys($feeds_wp_json);
 
-for ($i = 0; $i < count($keys); $i++){
+if (!$youtube_only) for ($i = 0; $i < count($keys); $i++){
     $key = $keys[$i];
     if (!is_array($feeds_wp_json[$key])){
         $url = $feeds_wp_json[$key];
@@ -163,7 +173,7 @@ for ($i = 0; $i < count($keys); $i++){
             $item['content'] = $entry['content']['rendered'];
 
             if (strpos($item['id'], '/gallery/') !== false) $item['type'] = 'GALLERY';
-            if (isset($item['content']) && strpos($item['content'], 'src="https://open.spotify.com/embed/episode/') !== false) $item['type'] = 'PODCAST';
+            if (isset($item['content']) && strpos($item['content'], 'src="https://open.spotify.com/embed/') !== false) $item['type'] = 'PODCAST';
 
             $item['timestamp'] = (int) strtotime($entry['date_gmt']);
             $item['author'] = $key;
