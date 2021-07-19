@@ -102,6 +102,7 @@ $feeds = [
         'https://student-activity.binus.ac.id/csc/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/csc/gallery/feed/atom/?paged=2',
     ],
+    'Digital Content BINUS' => 'https://www.youtube.com/feeds/videos.xml?channel_id=UCZDXNn-IInmlmZ00wyy4__Q',
     'First Year Program (FYP)' => 'https://student.binus.ac.id/fyp/feed/atom/',
     'Himpunan Mahasiswa Akuntansi (HIMA)' => [
         'https://student-activity.binus.ac.id/hima/gallery/feed/atom/',
@@ -251,6 +252,10 @@ $feeds = [
         'https://student-activity.binus.ac.id/paramabira/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/paramabira/gallery/feed/atom/?paged=2',
     ],
+    'Pancasila by Character Building Development Center (CBDC)' => [
+        'https://binus.ac.id/character-building/pancasila/feed/atom/',
+        'https://binus.ac.id/character-building/pancasila/feed/atom/?paged=2',
+    ],
     'Persekutuan Oikumene (PO)' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCTW8v8bZq0UnioDGdA00UNA',
         'https://student-activity.binus.ac.id/po/gallery/feed/atom/',
@@ -267,7 +272,8 @@ $feeds = [
         'https://student-activity.binus.ac.id/stmanis/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/stmanis/gallery/feed/atom/?paged=2',
     ],
-    'Student BINUS' => 'https://www.youtube.com/feeds/videos.xml?channel_id=UCbObjb4NF91_t6csfgT4Bvg', 
+    'Student BINUS' => 'https://www.youtube.com/feeds/videos.xml?channel_id=UCbObjb4NF91_t6csfgT4Bvg',
+    'Tajuk by Character Building Development Center (CBDC)' => 'https://binus.ac.id/character-building/tajuk/feed/atom/',
     'TFI Student Committee (TFISC)' => [
         'https://student-activity.binus.ac.id/tfi/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/tfi/gallery/feed/atom/?paged=2',
@@ -328,6 +334,7 @@ $feeds_wp_json = [
     'BINUS Bandung' => 'https://binus.ac.id/bandung/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS Business International Club (BIC)' => 'https://student-activity.binus.ac.id/bic/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS Business School (BBS)' => 'https://bbs.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
+    'BINUS Entrepreneurship Center (BEC)' => 'https://binus.ac.id/entrepreneur/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS Game Development Club (BGDC)' => 'https://student-activity.binus.ac.id/bgdc/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS International Association of Information System (BASIS)' => 'https://student-activity.binus.ac.id/basis/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS International Camera In Action (CIA)' => 'https://student-activity.binus.ac.id/cia/wp-json/wp/v2/posts?per_page=50&_embed',
@@ -351,6 +358,7 @@ $feeds_wp_json = [
         'https://www.bvoiceradio.com/wp-json/wp/v2/posts?per_page=50&_embed',
         'https://student-activity.binus.ac.id/bvoice/wp-json/wp/v2/posts?per_page=50&_embed',
     ],
+    'Character Building Development Center (CBDC)' => 'https://binus.ac.id/character-building/wp-json/wp/v2/posts?per_page=50&_embed',
     'Chinese Literature - Faculty of Humanities' => 'https://chinese.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
     'Civil Engineering - Faculty of Engineering' => 'https://civil-eng.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
     'Computer Engineering - Faculty of Engineering' => 'https://comp-eng.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
