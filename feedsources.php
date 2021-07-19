@@ -187,8 +187,8 @@ $feeds = [
     ],
     'Himpunan Mahasiswa Teknik Sipil (HIMTES)' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCnxjFlgW3YpKVkSshFHP_SQ',
-        'https://student-activity.binus.ac.id/himti/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himti/gallery/feed/atom/?paged=2',
+        'https://student-activity.binus.ac.id/himtes/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/himtes/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Teknik Informatika (HIMTI) Bandung' => 'https://www.youtube.com/feeds/videos.xml?channel_id=UC_bIW8-akHLWn9Mj7PAV8zQ',
     'Himpunan Mahasiswa Teknologi Pangan (HIMFOODTECH)' => [
