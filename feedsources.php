@@ -52,11 +52,11 @@ $feeds = [
         'https://student-activity.binus.ac.id/basis/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/basis/gallery/feed/atom/?paged=2',
     ],
-    'BINUS International Camera In Action (CIA) ' => [
+    'BINUS International Camera In Action (CIA)' => [
         'https://student-activity.binus.ac.id/cia/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/cia/gallery/feed/atom/?paged=2',
     ],
-    'BINUS International Community in Christ (CIC) ' => [
+    'BINUS International Community in Christ (CIC)' => [
         'https://student-activity.binus.ac.id/cic/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/cic/gallery/feed/atom/?paged=2',
     ],
