@@ -22,6 +22,10 @@ $feeds = [
         'https://student-activity.binus.ac.id/bncc/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/bncc/gallery/feed/atom/?paged=2',
     ],
+    'Bina Nusantara Finance Club (BNFC)' => [
+        'https://student-activity.binus.ac.id/financeclub/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/financeclub/gallery/feed/atom/?paged=2',
+    ],
     'Bina Nusantara Mandarin Club (BNMC)' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCLAOWpVttk5DD9r1W3T5USQ',
         'https://student-activity.binus.ac.id/bnmc/gallery/feed/atom/',
@@ -47,6 +51,14 @@ $feeds = [
     'BINUS International Association of Information System (BASIS)' => [
         'https://student-activity.binus.ac.id/basis/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/basis/gallery/feed/atom/?paged=2',
+    ],
+    'BINUS International Camera In Action (CIA) ' => [
+        'https://student-activity.binus.ac.id/cia/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/cia/gallery/feed/atom/?paged=2',
+    ],
+    'BINUS International Community in Christ (CIC) ' => [
+        'https://student-activity.binus.ac.id/cic/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/cic/gallery/feed/atom/?paged=2',
     ],
     'BINUS International Computer Science Society (BINARY)' => [
         'https://student-activity.binus.ac.id/binary/gallery/feed/atom/',
@@ -183,12 +195,69 @@ $feeds = [
         'https://student-activity.binus.ac.id/himfoodtech/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/himfoodtech/gallery/feed/atom/?paged=2',
     ],
+    'International Marketing Community of BINUS University (IMCB)' => [
+        'https://student-activity.binus.ac.id/imcb/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/imcb/gallery/feed/atom/?paged=2',
+    ],
+    'ISACA Student Group (ISG)' => [
+        'https://student-activity.binus.ac.id/isgbinus/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/isgbinus/gallery/feed/atom/?paged=2',
+    ],
+    'Keluarga Besar Mahasiswa Khonghucu (KBMK)' => [
+        'https://student-activity.binus.ac.id/kbmk/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/kbmk/gallery/feed/atom/?paged=2',
+    ],
+    'Keluarga Mahasiswa Buddha Dhammavaddhana (KMBD)' => [
+        'https://student-activity.binus.ac.id/kmbd/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/kmbd/gallery/feed/atom/?paged=2',
+    ],
+    'Keluarga Mahasiswa Hindu (KMH)' => [
+        'https://student-activity.binus.ac.id/kmh/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/kmh/gallery/feed/atom/?paged=2',
+    ],
+    'Keluarga Mahasiswa Katolik (KMK)' => [
+        'https://student-activity.binus.ac.id/kmh/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/kmh/gallery/feed/atom/?paged=2',
+    ],
+    'Klub Seni Fotografi Bina Nusantara (KLIFONARA)' => [
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UCOaPd53FsYcXB9LN7Mw_fYw',
+        'https://student-activity.binus.ac.id/klifonara/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/klifonara/gallery/feed/atom/?paged=2',
+    ],
+    'Mahasiswa Bina Nusantara Pencinta Alam (SWANARAPALA)' => [
+        'https://student-activity.binus.ac.id/swanarapala/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/swanarapala/gallery/feed/atom/?paged=2',
+    ],
+    'Majelis Ta’lim (MT) Al-Khawarizmi' => [
+        'https://student-activity.binus.ac.id/mt/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/mt/gallery/feed/atom/?paged=2',
+    ],
     'Nippon Club' => [
         'https://nipponclub.net/rss/',
         'https://student-activity.binus.ac.id/nc/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/nc/gallery/feed/atom/?paged=2',
-    ],   
+    ],
+    'Paduan Suara Mahasiswa Bina Nusantara (PARAMABIRA)' => [
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UCygkQ4oOdKVcVCeCXqFZnRQ',
+        'https://student-activity.binus.ac.id/paramabira/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/paramabira/gallery/feed/atom/?paged=2',
+    ],
+    'Persekutuan Oikumene (PO)' => [
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UCTW8v8bZq0UnioDGdA00UNA',
+        'https://student-activity.binus.ac.id/po/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/po/gallery/feed/atom/?paged=2',
+    ],
     'School of Information Systems (SIS)' => 'https://www.youtube.com/feeds/videos.xml?channel_id=UCvsnUZKOSK4N9QuhmdBLX0Q',
+    'Seni Tari Mahasiswa Bina Nusantara (STAMANARA)' => [
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UCC_dfK9GIdtmuexXkPEiPTw',
+        'https://student-activity.binus.ac.id/stamanara/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/stamanara/gallery/feed/atom/?paged=2',
+    ],
+    'Seni Teater Mahasiswa Bina Nusantara (STMANIS)' => [
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UC4Pr5lSu4WDQ5zJCZjKfS5g',
+        'https://student-activity.binus.ac.id/stmanis/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/stmanis/gallery/feed/atom/?paged=2',
+    ],
     'Student BINUS' => 'https://www.youtube.com/feeds/videos.xml?channel_id=UCbObjb4NF91_t6csfgT4Bvg', 
     'TFI Student Committee (TFISC)' => [
         'https://student-activity.binus.ac.id/tfi/gallery/feed/atom/',
@@ -203,12 +272,37 @@ $feeds = [
         'https://student-activity.binus.ac.id/badminton/gallery/feed/atom/?paged=2',
     ],
     'UKM Band' => [
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UC4vAMrGM02W3YLunigHkwWg', 
         'https://student-activity.binus.ac.id/band/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/band/gallery/feed/atom/?paged=2',
     ],
     'UKM Basket' => [
         'https://student-activity.binus.ac.id/basket/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/basket/gallery/feed/atom/?paged=2',
+    ],
+    'UKM Karate' => [
+        'https://student-activity.binus.ac.id/karate/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/karate/gallery/feed/atom/?paged=2',
+    ],
+    'UKM Merpati Putih (MP)' => [
+        'https://student-activity.binus.ac.id/mp/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/mp/gallery/feed/atom/?paged=2',
+    ],
+    'UKM Sepak Bola (BINUS Football Club)' => [
+        'https://student-activity.binus.ac.id/sepakbola/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/sepakbola/gallery/feed/atom/?paged=2',
+    ],
+    'UKM Taekwondo' => [
+        'https://student-activity.binus.ac.id/taekwondo/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/taekwondo/gallery/feed/atom/?paged=2',
+    ],
+    'UKM Volley' => [
+        'https://student-activity.binus.ac.id/volley/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/volley/gallery/feed/atom/?paged=2',
+    ],
+    'UKM Wushu' => [
+        'https://student-activity.binus.ac.id/wushu/gallery/feed/atom/',
+        'https://student-activity.binus.ac.id/wushu/gallery/feed/atom/?paged=2',
     ],
 ];
 
@@ -218,14 +312,17 @@ $feeds_wp_json = [
     'B-Preneur' => 'https://student-activity.binus.ac.id/b-preneur/wp-json/wp/v2/posts?per_page=50&_embed',
     'Bersama Dalam Musik (BDM)' => 'https://student-activity.binus.ac.id/bdm/wp-json/wp/v2/posts?per_page=50&_embed',
     'Bina Nusantara Computer Club (BNCC)' => 'https://student-activity.binus.ac.id/bncc/wp-json/wp/v2/posts?per_page=50&_embed',
+    'Bina Nusantara Finance Club (BNFC)' => 'https://student-activity.binus.ac.id/financeclub/wp-json/wp/v2/posts?per_page=50&_embed',
     'Bina Nusantara Mandarin Club (BNMC)' => 'https://student-activity.binus.ac.id/bnmc/wp-json/wp/v2/posts?per_page=50&_embed',
     'Bina Nusantara Swimming Club (BASIC)' => 'https://student-activity.binus.ac.id/basic/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS Business International Club (BIC)' => 'https://student-activity.binus.ac.id/bic/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS Business School (BBS)' => 'https://bbs.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS Game Development Club (BGDC)' => 'https://student-activity.binus.ac.id/bgdc/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS International Association of Information System (BASIS)' => 'https://student-activity.binus.ac.id/basis/wp-json/wp/v2/posts?per_page=50&_embed',
-    'BINUS International Dance Club (BIDC)' => 'https://student-activity.binus.ac.id/bidc/wp-json/wp/v2/posts?per_page=50&_embed',
+    'BINUS International Camera In Action (CIA)' => 'https://student-activity.binus.ac.id/cia/wp-json/wp/v2/posts?per_page=50&_embed',
+    'BINUS International Community in Christ (CIC)' => 'https://student-activity.binus.ac.id/cic/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS International Computer Science Society (BINARY)' => 'https://student-activity.binus.ac.id/binary/wp-json/wp/v2/posts?per_page=50&_embed',
+    'BINUS International Dance Club (BIDC)' => 'https://student-activity.binus.ac.id/bidc/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS International Marketing Club (BIMARC)' => 'https://student-activity.binus.ac.id/bimarc/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS International Office' => 'https://io.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS Northumbria School of Design (BNSD)' => 'https://bnsd.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
@@ -268,7 +365,20 @@ $feeds_wp_json = [
     'Himpunan Mahasiswa Teknik Informatika (HIMTI)' => 'https://student-activity.binus.ac.id/himti/wp-json/wp/v2/posts?per_page=50&_embed',
     'Himpunan Mahasiswa Teknik Sipil (HIMTES)' => 'https://student-activity.binus.ac.id/himtes/wp-json/wp/v2/posts?per_page=50&_embed',
     'Himpunan Mahasiswa Teknologi Pangan (HIMFOODTECH)' => 'https://student-activity.binus.ac.id/himfoodtech/wp-json/wp/v2/posts?per_page=50&_embed',
+    'International Marketing Community of BINUS University (IMCB)' => 'https://student-activity.binus.ac.id/imcb/wp-json/wp/v2/posts?per_page=50&_embed',
+    'ISACA Student Group (ISG)' => 'https://student-activity.binus.ac.id/isgbinus/wp-json/wp/v2/posts?per_page=50&_embed',
+    'Keluarga Besar Mahasiswa Khonghucu (KBMK)' => 'https://student-activity.binus.ac.id/kbmk/wp-json/wp/v2/posts?per_page=50&_embed',
+    'Keluarga Mahasiswa Buddha Dhammavaddhana (KMBD)' => 'https://student-activity.binus.ac.id/kmbd/wp-json/wp/v2/posts?per_page=50&_embed',
+    'Keluarga Mahasiswa Hindu (KMH)' => 'https://student-activity.binus.ac.id/kmh/wp-json/wp/v2/posts?per_page=50&_embed',
+    'Keluarga Mahasiswa Katolik (KMK)' => 'https://student-activity.binus.ac.id/kmk/wp-json/wp/v2/posts?per_page=50&_embed',
+    'Klub Seni Fotografi Bina Nusantara (KLIFONARA)' => 'https://student-activity.binus.ac.id/klifonara/wp-json/wp/v2/posts?per_page=50&_embed',
+    'Mahasiswa Bina Nusantara Pencinta Alam (SWANARAPALA)' => 'https://student-activity.binus.ac.id/swanarapala/wp-json/wp/v2/posts?per_page=50&_embed',
+    'Majelis Ta’lim (MT) Al-Khawarizmi' => 'https://student-activity.binus.ac.id/mt/wp-json/wp/v2/posts?per_page=50&_embed',
     'Nippon Club' => 'https://student-activity.binus.ac.id/nc/wp-json/wp/v2/posts?per_page=50&_embed',
+    'Paduan Suara Mahasiswa Bina Nusantara (PARAMABIRA)' => 'https://student-activity.binus.ac.id/paramabira/wp-json/wp/v2/posts?per_page=50&_embed',
+    'Persekutuan Oikumene (PO)' => 'https://student-activity.binus.ac.id/po/wp-json/wp/v2/posts?per_page=50&_embed',
+    'Seni Tari Mahasiswa Bina Nusantara (STAMANARA)' => 'https://student-activity.binus.ac.id/stamanara/wp-json/wp/v2/posts?per_page=50&_embed',
+    'Seni Teater Mahasiswa Bina Nusantara (STMANIS)' => 'https://student-activity.binus.ac.id/stmanis/wp-json/wp/v2/posts?per_page=50&_embed',
     'School of Computer Science (SOCS)' => 'https://socs.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
     'School of Information Systems (SIS)' => 'https://sis.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
     'Student BINUS' => 'https://student.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
@@ -279,6 +389,12 @@ $feeds_wp_json = [
     'UKM Badminton' => 'https://student-activity.binus.ac.id/badminton/wp-json/wp/v2/posts?per_page=50&_embed',
     'UKM Band' => 'https://student-activity.binus.ac.id/band/wp-json/wp/v2/posts?per_page=50&_embed',
     'UKM Basket' => 'https://student-activity.binus.ac.id/basket/wp-json/wp/v2/posts?per_page=50&_embed',
+    'UKM Karate' => 'https://student-activity.binus.ac.id/karate/wp-json/wp/v2/posts?per_page=50&_embed',
+    'UKM Merpati Putih (MP)' => 'https://student-activity.binus.ac.id/mp/wp-json/wp/v2/posts?per_page=50&_embed',
+    'UKM Sepak Bola (BINUS Football Club)' => 'https://student-activity.binus.ac.id/sepakbola/wp-json/wp/v2/posts?per_page=50&_embed',
+    'UKM Taekwondo' => 'https://student-activity.binus.ac.id/taekwondo/wp-json/wp/v2/posts?per_page=50&_embed',
+    'UKM Volley' => 'https://student-activity.binus.ac.id/volley/wp-json/wp/v2/posts?per_page=50&_embed',
+    'UKM Wushu' => 'https://student-activity.binus.ac.id/wushu/wp-json/wp/v2/posts?per_page=50&_embed',
 ];
 
 $authors = [];
