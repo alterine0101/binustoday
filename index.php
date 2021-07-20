@@ -29,7 +29,7 @@ use Illuminate\Container\Container;
 $capsule->setEventDispatcher(new Dispatcher(new Container));
 $capsule->setAsGlobal();
 
-$type = 'NEWS&ARTICLES';
+$type = 'ALL-OTHER';
 $load_article = false;
 $search = false;
 $author_search = false;
@@ -54,7 +54,10 @@ if ($load_article === false){
         echo $author_search;
 
         $data = $data->where('author', $author_search);
-    } else if ($type == 'NEWS&ARTICLES') {
+    } else if ($type == 'ALL-OTHER') {
+        // Skip filter
+        $data = $data;
+    } else if ($type == 'NEWS-ARTICLES') {
         $data = $data->where('type', 'ARTICLE')->orWhere('type', 'NEWS');
     } else {
         $data = $data->where('type', strtoupper($type));
@@ -85,6 +88,7 @@ if (count($data) == 0){
 
     <!-- Halfmoon CSS -->
     <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon.min.css" rel="stylesheet" />
+    <link href="https://www.w3schools.com/lib/w3-colors-ios.css" rel="stylesheet" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -168,7 +172,7 @@ if (count($data) == 0){
                 <b>BINUS</b>Today
             </a>
             <form class="form-inline d-none d-md-flex ml-auto" action="/" method="GET"> <!-- d-none = display: none, d-md-flex = display: flex on medium screens and up (width > 768px), ml-auto = margin-left: auto -->
-                <input type="text" name="q" class="form-control" placeholder="Search News and Articles..." required="required">
+                <input type="text" name="q" class="form-control" placeholder="Search..." required="required">
                 <button class="btn btn-action btn-primary" type="submit">
                     <i class="bi bi-search" aria-hidden="true"></i>
                     <span class="sr-only">Search</span>
@@ -184,7 +188,7 @@ if (count($data) == 0){
                         <div class="dropdown-content">
                             <form action="/" method="GET">
                                 <div class="form-group">
-                                <input type="text" name="q" class="form-control" placeholder="Search News and Articles..." required="required">
+                                <input type="text" name="q" class="form-control" placeholder="Search..." required="required">
                                 </div>
                                 <button class="btn btn-primary btn-block" type="submit">Search</button>
                             </form>
@@ -202,6 +206,12 @@ if (count($data) == 0){
                 <h5 class="sidebar-title">Menu</h5>
                 <div class="sidebar-divider"></div>
                 <a href="/" class="sidebar-link sidebar-link-with-icon">
+                    <span class="sidebar-icon">
+                        <i class="bi bi-house" aria-hidden="true"></i>
+                    </span>
+                    All/Other
+                </a>
+                <a href="/?type=NEWS-ARTICLES" class="sidebar-link sidebar-link-with-icon">
                     <span class="sidebar-icon text-white bg-primary">
                         <i class="bi bi-newspaper" aria-hidden="true"></i>
                     </span>
@@ -230,13 +240,13 @@ if (count($data) == 0){
                 <div class="sidebar-divider"></div>
                 <a href="#" class="sidebar-link sidebar-link-with-icon">
                     <span class="sidebar-icon">
-                        <i class="bi bi-question-circle-fill" aria-hidden="true"></i>
+                        <i class="bi bi-question-circle" aria-hidden="true"></i>
                     </span>
                     FAQ
                 </a>
                 <a href="#" class="sidebar-link sidebar-link-with-icon">
                     <span class="sidebar-icon">
-                        <i class="bi bi-flag-fill" aria-hidden="true"></i>
+                        <i class="bi bi-flag" aria-hidden="true"></i>
                     </span>
                     Report Feed/Article
                 </a>
@@ -254,8 +264,8 @@ if (count($data) == 0){
                 </a>
                 <br>
                 <h5 class="sidebar-title">Authors</h5>
-                <div class="sidebar-divider"></div>
                 <?php foreach(array_keys($authors) as $feed): ?>
+                    <div class="sidebar-divider"></div>
                     <a href="/?author=<?= str_replace('&', '%26', $feed) ?>" class="sidebar-link" style="font-weight:600;">
                         <?= $feed ?> <i class="bi bi-arrow-right-circle"></i>
                     </a>
@@ -342,28 +352,52 @@ if (count($data) == 0){
                     </div>
                 </div>
             <?php else: ?>
-                <iframe <?= strlen($data[0]->content) > 0 ? 'class="d-none"' : '' ?> style="width: 100%; height: 100%; border:0;" src="<?= $data[0]->id ?>?utm_source=binustoday&utm_campaign=binustodayarticleview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe id="originalArticle" style="width: 100%; height: 100%; border:0;<?= strlen($data[0]->content) > 0 ? ' display: none' : '' ?>" src="<?= $data[0]->id ?>?utm_source=binustoday&utm_campaign=binustodayarticleview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 <?php if (strlen($data[0]->content) > 0): ?>
-                    <?php if (strlen($data[0]->cover_image) > 0): ?>
-                        <img style="width: 100%; height: auto" src="<?= $data[0]->cover_image ?>">
-                    <?php endif; ?>
-                    <article class="content m-auto p-20" style="max-width: 50rem">
-                        <h1 class="font-weight-bold"><?= $data[0]->title ?></h1>
-                        <h5>
-                            By <b><?= $data[0]->author ?></b> &bull;
-                            <?php
-                                $article_time = new DateTime();
-                                $article_time->setTimestamp($data[0]->timestamp);
-                                $now = new DateTime();
-                                $diff = $article_time->diff($now);
-                                echo ($diff->days > 0 ? ($diff->days . ' days ') : '') . $diff->h . ' hours ago';
-                            ?>
-                        </h5>
-                        <div id="articlecontent">
-                            <?= $data[0]->content ?>
+                    <article id="readerView">
+                        <?php if (strlen($data[0]->cover_image) > 0): ?>
+                            <img style="width: 100%; height: auto" src="<?= $data[0]->cover_image ?>">
+                        <?php endif; ?>
+                        <div class="content m-auto p-20" style="max-width: 50rem">
+                            <p class="m-0">
+                                <b>
+                                    <?php switch($data[0]->type){
+                                        case 'ARTICLE':
+                                        case 'NEWS':
+                                            echo '<span class="badge badge-primary"><i class="bi bi-newspaper" aria-hidden="true"></i> ';
+                                            break;
+                                        case 'GALLERY':
+                                            echo '<span class="badge badge-success"><i class="bi bi-images" aria-hidden="true"></i> ';
+                                            break;
+                                        case 'PODCAST':
+                                            echo '<span class="badge badge-secondary"><i class="bi bi-music-note-list" aria-hidden="true"></i> ';
+                                            break;
+                                        case 'VIDEO':
+                                            echo '<span class="badge badge-danger"><i class="bi bi-play-circle" aria-hidden="true"></i> ';
+                                            break;
+                                        default:
+                                            echo '<span class="badge">';
+                                    } ?><?= $data[0]->type ?></span>
+                                </b>
+                            </p>
+                            <h1 class="font-weight-bold"><?= $data[0]->title ?></h1>
+                            <h5>
+                                By <b><?= $data[0]->author ?></b> &bull;
+                                <?php
+                                    $article_time = new DateTime();
+                                    $article_time->setTimestamp($data[0]->timestamp);
+                                    $now = new DateTime();
+                                    $diff = $article_time->diff($now);
+                                    echo ($diff->days > 0 ? ($diff->days . ' days ') : '') . $diff->h . ' hours ago';
+                                ?>
+                            </h5>
+                            <a onClick="document.getElementById('originalArticle').style.display = 'block'; document.getElementById('readerView').style.display = 'none';">View Original Article</a>
+                            <div id="articlecontent">
+                                <?= $data[0]->content ?>
+                            </div>
+                            <a onClick="document.getElementById('originalArticle').style.display = 'block'; document.getElementById('readerView').style.display = 'none';">View Original Article</a>
+                            <script src="assets/beautify-article.js"></script>
                         </div>
-                        <a href="<?= $data[0]->id ?>?utm_source=binustoday&utm_campaign=binustodayvieworiginal">View Original Article</a>
-                        <script src="assets/beautify-article.js"></script>
                     </article>
                 <?php endif; ?>
             <?php endif; ?>
