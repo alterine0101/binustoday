@@ -51,6 +51,8 @@ if ($load_article === false){
         $search = '%' . str_replace(' ', '%', $search) . '%';
         $data = $data->where('summary', 'LIKE', $search);
     } else if ($author_search !== false){
+        echo $author_search;
+
         $data = $data->where('author', $author_search);
     } else if ($type == 'NEWS&ARTICLES') {
         $data = $data->where('type', 'ARTICLE')->orWhere('type', 'NEWS');
@@ -254,7 +256,7 @@ if (count($data) == 0){
                 <h5 class="sidebar-title">Authors</h5>
                 <div class="sidebar-divider"></div>
                 <?php foreach(array_keys($authors) as $feed): ?>
-                    <a href="/?author=<?= $feed ?>" class="sidebar-link" style="font-weight:600;">
+                    <a href="/?author=<?= str_replace('&', '%26', $feed) ?>" class="sidebar-link" style="font-weight:600;">
                         <?= $feed ?> <i class="bi bi-arrow-right-circle"></i>
                     </a>
                 <?php endforeach; ?>
