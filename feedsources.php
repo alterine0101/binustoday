@@ -368,6 +368,7 @@ $feeds_wp_json = [
     'DKV New Media' => 'https://dkv.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
     'English Literature - Faculty of Humanities' => 'https://english.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
     'Faculty of Engineering' => 'https://engineering.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
+    'Fast Response Community (FARCO)' => 'https://student-activity.binus.ac.id/farco/wp-json/wp/v2/posts?per_page=50&_embed',
     'Filemagz by BNCC' => 'https://www.filemagz.com/wp-json/wp/v2/posts?per_page=50&_embed',
     'Food Technology - Faculty of Engineering' => 'https://foodtech.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
     'Himpunan Mahasiswa Akuntansi (HIMA)' => 'https://student-activity.binus.ac.id/hima/wp-json/wp/v2/posts?per_page=50&_embed',
