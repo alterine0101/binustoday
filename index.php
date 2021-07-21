@@ -98,6 +98,9 @@ if (count($data) == 0){
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
+    <!-- FontAwesome 5 Brands -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.1/css/all.min.css">
+
     <style>
         body {
             font-size: 1.6rem;
@@ -114,12 +117,12 @@ if (count($data) == 0){
             justify-items: center;
         }
 
-        @media (max-width: 1199px){
+        @media (max-width: 992px){
             #card-container {
                 column-count: 2;
             }
         }
-        @media (max-width: 991px){
+        @media (max-width: 768px){
             #card-container {
                 column-count: 1;
             }
@@ -151,7 +154,25 @@ if (count($data) == 0){
     </head>
     <body class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true" data-sidebar-shortcut-enabled="true" data-set-preferred-mode-onload="true">
     <!-- Modals go here -->
-    <!-- Reference: https://www.gethalfmoon.com/docs/modal -->
+    <div class="modal" id="share-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <a onclick="halfmoon.toggleModal('share-modal')" class="close" role="button" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </a>
+                <h5 class="modal-title">Share via link:</h5>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="share-modal-url">
+                    <div class="input-group-append">
+                        <button class="btn font-weight-medium" type="button" onclick="document.getElementById('share-modal-url').select(); document.execCommand('copy');"><i class="bi bi-clipboard" aria-hidden="true"></i> Salin</button>
+                    </div>
+                </div>
+                <div class="text-right mt-20">
+                    <a onclick="halfmoon.toggleModal('share-modal')" class="btn btn-primary font-weight-medium" role="button">Tutup</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Page wrapper start -->
     <div class="page-wrapper with-navbar with-sidebar">
@@ -391,11 +412,37 @@ if (count($data) == 0){
                                     echo ($diff->days > 0 ? ($diff->days . ' days ') : '') . $diff->h . ' hours ago';
                                 ?>
                             </h5>
-                            <a onClick="document.getElementById('originalArticle').style.display = 'block'; document.getElementById('readerView').style.display = 'none';">View Original Article</a>
+                            <div class="alert px-15" role="alert">
+                                <h4 class="alert-heading font-weight-bold">Share to your friends:</h4>
+                                <div class="d-flex flex-wrap justify-content-between my-10">
+                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://wa.me/send?text=%2A<?= urlencode($data[0]->title) ?>%2A%0A<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #25D366"><i class="fa-lg fab fa-whatsapp" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">WhatsApp</span></a>
+                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://social-plugins.line.me/lineit/share?url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #06c755"><i class="fa-lg fab fa-line" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">LINE</span></a>
+                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://t.me/share/url?text=<?= urlencode($data[0]->title) ?>&amp;url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #54A9EB"><i class="fa-lg fab fa-telegram" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Telegram</span></a>
+                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://www.facebook.com/sharer/sharer.php?u=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #4267B2"><i class="fa-lg fab fa-facebook" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Facebook</span></a>
+                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://twitter.com/share?text=<?= urlencode($data[0]->title) ?>&amp;url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #1DA1F2"><i class="fa-lg fab fa-twitter" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Twitter</span></a>
+                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://www.linkedin.com/shareArticle?text=<?= urlencode($data[0]->title) ?>&amp;url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #0077B5"><i class="fa-lg fab fa-linkedin" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">LinkedIn</span></a>
+                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="mailto:?body=<?= urlencode($data[0]->title) ?> <?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #ff4d4f"><i class="fa-lg bi bi-envelope" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Email</span></a>
+                                    <a class="btn btn-square rounded-circle btn-lg"><i class="fa-lg bi bi-three-dots" aria-hidden="true" onclick="try{navigator.share({title: '<?= filter_var($data[0]->title, FILTER_SANITIZE_STRING) ?>',url: '<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>'})} catch(e) {document.getElementById('share-modal-url').value = '<?= 'http://' . $_SERVER['HTTP_HOST'] .  $_SERVER['REQUEST_URI'] ?>'; halfmoon.toggleModal('share-modal')}"></i><span class="sr-only">Aplikasi lainnya...</span></a>
+                                </div>
+                                <a onClick="document.getElementById('originalArticle').style.display = 'block'; document.getElementById('readerView').style.display = 'none';">View Original Article</a>
+                            </div>
                             <div id="articlecontent">
                                 <?= $data[0]->content ?>
                             </div>
-                            <a onClick="document.getElementById('originalArticle').style.display = 'block'; document.getElementById('readerView').style.display = 'none';">View Original Article</a>
+                            <div class="alert px-15" role="alert">
+                                <h4 class="alert-heading font-weight-bold">Share to your friends:</h4>
+                                <div class="d-flex flex-wrap justify-content-between my-10">
+                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://wa.me/send?text=%2A<?= urlencode($data[0]->title) ?>%2A%0A<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #25D366"><i class="fa-lg fab fa-whatsapp" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">WhatsApp</span></a>
+                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://social-plugins.line.me/lineit/share?url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #06c755"><i class="fa-lg fab fa-line" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">LINE</span></a>
+                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://t.me/share/url?text=<?= urlencode($data[0]->title) ?>&amp;url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #54A9EB"><i class="fa-lg fab fa-telegram" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Telegram</span></a>
+                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://www.facebook.com/sharer/sharer.php?u=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #4267B2"><i class="fa-lg fab fa-facebook" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Facebook</span></a>
+                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://twitter.com/share?text=<?= urlencode($data[0]->title) ?>&amp;url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #1DA1F2"><i class="fa-lg fab fa-twitter" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Twitter</span></a>
+                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://www.linkedin.com/shareArticle?text=<?= urlencode($data[0]->title) ?>&amp;url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #0077B5"><i class="fa-lg fab fa-linkedin" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">LinkedIn</span></a>
+                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="mailto:?body=<?= urlencode($data[0]->title) ?> <?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #ff4d4f"><i class="fa-lg bi bi-envelope" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Email</span></a>
+                                    <a class="btn btn-square rounded-circle btn-lg"><i class="fa-lg bi bi-three-dots" aria-hidden="true" onclick="try{navigator.share({title: '<?= filter_var($data[0]->title, FILTER_SANITIZE_STRING) ?>',url: '<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>'})} catch(e) {document.getElementById('share-modal-url').value = '<?= 'http://' . $_SERVER['HTTP_HOST'] .  $_SERVER['REQUEST_URI'] ?>'; halfmoon.toggleModal('share-modal')}"></i><span class="sr-only">Aplikasi lainnya...</span></a>
+                                </div>
+                                <a onClick="document.getElementById('originalArticle').style.display = 'block'; document.getElementById('readerView').style.display = 'none';">View Original Article</a>
+                            </div>
                             <script src="assets/beautify-article.js"></script>
                         </div>
                     </article>
