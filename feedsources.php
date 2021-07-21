@@ -5,6 +5,7 @@ $feeds = [
         'https://student-activity.binus.ac.id/aiesec/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/aiesec/gallery/feed/atom/?paged=2',
     ],
+    'Accounting - BINUS Online Learning (BOL)' => 'https://onlinelearning.binus.ac.id/category/accounting-department-article/feed/atom/',
     'B-Preneur' => [
         'https://student-activity.binus.ac.id/b-preneur/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/b-preneur/gallery/feed/atom/?paged=2',
@@ -92,11 +93,13 @@ $feeds = [
         'https://student-activity.binus.ac.id/binustvclub/gallery/feed/atom/?paged=2',
     ],
     'BNMC National Mandarin Competition (NMC)' => 'https://www.youtube.com/feeds/videos.xml?channel_id=UCXSZzv05xCC3vo7eSBr_wIg',
+    'Business Management - BINUS Online Learning (BOL)' => 'https://onlinelearning.binus.ac.id/category/manajemen-bisnis-article/feed/atom/',
     'BVoice Radio' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UC5QOhgC8MRcwWHDkh2UnqhA',
         'https://student-activity.binus.ac.id/bvoice/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/bvoice/gallery/feed/atom/?paged=2',
     ],
+    'Computer Science - BINUS Online Learning (BOL)' => 'https://onlinelearning.binus.ac.id/category/informatics-engineering-article/feed/atom/',
     'Cyber Security Community (CSC)' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCPyySzUnVwAlh3HJlPPgqEg',
         'https://student-activity.binus.ac.id/csc/gallery/feed/atom/',
@@ -205,6 +208,8 @@ $feeds = [
         'https://student-activity.binus.ac.id/himfoodtech/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/himfoodtech/gallery/feed/atom/?paged=2',
     ],
+    'Industrial Engineering - BINUS Online Learning (BOL)' => 'https://onlinelearning.binus.ac.id/category/industrial-engineering-article/feed/atom/',
+    'Information Systems - BINUS Online Learning (BOL)' => 'https://onlinelearning.binus.ac.id/category/information-systems-article/feed/atom/',
     'International Marketing Community of BINUS University (IMCB)' => [
         'https://student-activity.binus.ac.id/imcb/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/imcb/gallery/feed/atom/?paged=2',
@@ -323,6 +328,7 @@ $feeds = [
 
 // Classifies feeds which supports the WP-JSON APIs
 $feeds_wp_json = [
+    'Accounting - Faculty of Economic & Communication' => 'https://business-law.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
     'AIESEC in BINUS' => 'https://student-activity.binus.ac.id/aiesec/wp-json/wp/v2/posts?per_page=50&_embed',
     'Architecture - Faculty of Engineering' => 'https://architecture.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
     'B-Preneur' => 'https://student-activity.binus.ac.id/b-preneur/wp-json/wp/v2/posts?per_page=50&_embed',
@@ -345,7 +351,6 @@ $feeds_wp_json = [
     'BINUS International Office' => 'https://io.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS Malang' => 'https://binus.ac.id/malang/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS Northumbria School of Design (BNSD)' => 'https://bnsd.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
-    'BINUS Online Learning (BOL)' => 'https://onlinelearning.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS Square' => 'https://binus.ac.id/binussquare/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS Square Student Committee (BSSC)' => 'https://student-activity.binus.ac.id/bssc/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS Student Learning Community (BSLC)' => 'https://student-activity.binus.ac.id/bslc/wp-json/wp/v2/posts?per_page=50&_embed',
