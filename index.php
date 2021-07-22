@@ -1,33 +1,5 @@
 <?php
-use Dotenv\Dotenv;
-
-require __DIR__ . '/vendor/autoload.php';
-
-class db extends Illuminate\Database\Capsule\Manager{}
-
-require('feedsources.php');
-
-$dotenv = Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-
-$capsule = new db;
-$capsule->addConnection([
-    'driver' => 'mysql',
-    'host' => $_ENV['DB_HOST'],
-    'port' => $_ENV['DB_PORT'],
-    'username' => $_ENV['DB_USERNAME'],
-    'password' => $_ENV['DB_PASSWORD'],
-    'database' => $_ENV['DB_DATABASE'],
-    'charset' => 'utf8mb4',
-    'collation' => 'utf8mb4_general_ci',
-    'prefix' => '',
-]);
-
-use Illuminate\Events\Dispatcher;
-use Illuminate\Container\Container;
-
-$capsule->setEventDispatcher(new Dispatcher(new Container));
-$capsule->setAsGlobal();
+require_once('./dbconnection.php');
 
 $type = 'ALL-OTHER';
 $load_article = false;
@@ -72,6 +44,22 @@ if (count($data) == 0){
     $not_found = true;
 }
 
+$html_title = 'BINUS Today';
+$html_description = 'Trending news and articles from over 100 departments, faculties, schools, and student organizations at BINUS University.';
+$html_og_cover = 'assets/og-cover.jpg';
+
+if (count($data) > 0){
+    if ($load_article !== false){
+        $html_title = $data[0]->title . ' - ' . $html_title;
+        $html_description = strip_tags($data[0]->summary);
+        if (strlen($data[0]->cover_image) > 0) $html_og_cover = $data[0]->cover_image;
+    } else if ($search !== false){
+        $html_title = 'Search results for ' . $search . ' - ' . $html_title;
+    } else if ($author_search !== false){
+        $html_title = 'Posts published by ' . $author_search . ' - ' . $html_title;
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,10 +69,28 @@ if (count($data) == 0){
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta name="viewport" content="width=device-width" />
+    
+    <!-- Primary Meta Tags -->
+    <title><?= $html_title ?></title>
+    <meta name="title" content="<?= $html_title ?>">
+    <meta name="description" content="<?= $html_description ?>">
 
     <!-- Favicon and title -->
-    <!-- <link rel="icon" href="path/to/fav.png"> -->
-    <title>BINUS Today</title>
+    <link rel="icon" href="assets/favicon.svg" sizes="any" type="image/svg+xml">>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>">
+    <meta property="og:title" content="<?= $html_title ?>">
+    <meta property="og:description" content="<?= $html_description ?>">
+    <meta property="og:image" content="<?= $html_og_cover ?>">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>">
+    <meta property="twitter:title" content="<?= $html_title ?>">
+    <meta property="twitter:description" content="<?= $html_description ?>">
+    <meta property="twitter:image" content="<?= $html_og_cover ?>">
 
     <!-- Halfmoon CSS -->
     <link href="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/css/halfmoon.min.css" rel="stylesheet" />

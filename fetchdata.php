@@ -1,37 +1,9 @@
 <?php
-use Dotenv\Dotenv;
-
-require __DIR__ . '/vendor/autoload.php';
-
-class db extends Illuminate\Database\Capsule\Manager{}
-
-require('feedsources.php');
-
-$dotenv = Dotenv::createImmutable(__DIR__);
-$dotenv->load();
-
-$capsule = new db;
-$capsule->addConnection([
-    'driver' => 'mysql',
-    'host' => $_ENV['DB_HOST'],
-    'port' => $_ENV['DB_PORT'],
-    'username' => $_ENV['DB_USERNAME'],
-    'password' => $_ENV['DB_PASSWORD'],
-    'database' => $_ENV['DB_DATABASE'],
-    'charset' => 'utf8mb4',
-    'collation' => 'utf8mb4_general_ci',
-    'prefix' => '',
-]);
-
-use Illuminate\Events\Dispatcher;
-use Illuminate\Container\Container;
+require_once('./dbconnection.php');
 
 // Feed::$cacheDir = __DIR__ . '/tmp';
 // Feed::$cacheExpire = '5 hours';
 // Feed::$userAgent = "BINUSTodayBot/1.0 (+https://binustoday.reinhart1010.id)";
-
-$capsule->setEventDispatcher(new Dispatcher(new Container));
-$capsule->setAsGlobal();
 
 $enable_youtube = false;
 $youtube_only = false;
