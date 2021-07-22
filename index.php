@@ -46,7 +46,7 @@ if (count($data) == 0){
 
 $html_title = 'BINUS Today';
 $html_description = 'Trending news and articles from over 100 departments, faculties, schools, and student organizations at BINUS University.';
-$html_og_cover = 'assets/og-cover.jpg';
+$html_og_cover = 'https://binustoday.reinhart1010.id/assets/og-cover.jpg';
 
 if (count($data) > 0){
     if ($load_article !== false){
@@ -76,18 +76,18 @@ if (count($data) > 0){
     <meta name="description" content="<?= $html_description ?>">
 
     <!-- Favicon and title -->
-    <link rel="icon" href="assets/favicon.svg" sizes="any" type="image/svg+xml">>
+    <link rel="icon" href="https://binustoday.reinhart1010.id/assets/favicon.svg" sizes="any" type="image/svg+xml">>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>">
+    <meta property="og:url" content="<?= 'https://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>">
     <meta property="og:title" content="<?= $html_title ?>">
     <meta property="og:description" content="<?= $html_description ?>">
     <meta property="og:image" content="<?= $html_og_cover ?>">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>">
+    <meta property="twitter:url" content="<?= 'https://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>">
     <meta property="twitter:title" content="<?= $html_title ?>">
     <meta property="twitter:description" content="<?= $html_description ?>">
     <meta property="twitter:image" content="<?= $html_og_cover ?>">
