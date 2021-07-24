@@ -47,16 +47,19 @@ if (count($data) == 0){
 $html_title = 'BINUS Today';
 $html_description = 'Trending news and articles from over 100 departments, faculties, schools, and student organizations at BINUS University.';
 $html_og_cover = 'https://binustoday.reinhart1010.id/assets/og-cover.jpg';
+$html_canonical = 'https://binustoday.reinhart1010.id/';
 
 if (count($data) > 0){
     if ($load_article !== false){
         $html_title = $data[0]->title . ' - ' . $html_title;
         $html_description = strip_tags($data[0]->summary);
         if (strlen($data[0]->cover_image) > 0) $html_og_cover = $data[0]->cover_image;
+        $html_canonical = 'https://binustoday.reinhart1010.id/?a=' . urlencode($data[0]->id);
     } else if ($search !== false){
         $html_title = 'Search results for ' . $search . ' - ' . $html_title;
     } else if ($author_search !== false){
         $html_title = 'Posts published by ' . $author_search . ' - ' . $html_title;
+        $html_canonical = 'https://binustoday.reinhart1010.id/?author=' . urlencode($author_search);
     }
 }
 
@@ -76,7 +79,8 @@ if (count($data) > 0){
     <meta name="description" content="<?= $html_description ?>">
 
     <!-- Favicon and title -->
-    <link rel="icon" href="https://binustoday.reinhart1010.id/assets/favicon.svg" sizes="any" type="image/svg+xml">>
+    <link rel="icon" href="https://binustoday.reinhart1010.id/assets/favicon.svg" sizes="any" type="image/svg+xml">
+    <link rel="canonical" href="<?= $html_canonical ?>">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
