@@ -80,6 +80,7 @@ if (count($data) > 0){
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="BINUS Today">
     <meta property="og:url" content="<?= 'https://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>">
     <meta property="og:title" content="<?= $html_title ?>">
     <meta property="og:description" content="<?= $html_description ?>">
