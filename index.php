@@ -52,7 +52,7 @@ $html_canonical = 'https://binustoday.reinhart1010.id/';
 if (count($data) > 0){
     if ($load_article !== false){
         $html_title = $data[0]->title . ' - ' . $html_title;
-        $html_description = strip_tags($data[0]->summary);
+        $html_description = substr(strip_tags($data[0]->summary), 0, 160);
         if (strlen($data[0]->cover_image) > 0) $html_og_cover = $data[0]->cover_image;
         $html_canonical = 'https://binustoday.reinhart1010.id/?a=' . urlencode($data[0]->id);
     } else if ($search !== false){
