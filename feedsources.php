@@ -144,7 +144,8 @@ $feeds = [
         'https://student-activity.binus.ac.id/himme/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/himme/gallery/feed/atom/?paged=2',
     ],
-    'Himpunan Mahasiswa Marketing Communication (HIMMCOMM)' => [
+    'Himpunan Mahasiswa Communication Department (HIMMCOMM)' => [
+        'https://himmcommbinus.blogspot.com/feeds/posts/default',
         'https://student-activity.binus.ac.id/himmcomm/gallery/feed/atom/',
         'https://student-activity.binus.ac.id/himmcomm/gallery/feed/atom/?paged=2',
     ],
@@ -385,7 +386,7 @@ $feeds_wp_json = [
     'Himpunan Mahasiswa Hubungan Internasional (HIMHI)' => 'https://student-activity.binus.ac.id/himhi/wp-json/wp/v2/posts?per_page=25&_embed',
     'Himpunan Mahasiswa Komputerisasi Akuntansi (HIMKA)' => 'https://student-activity.binus.ac.id/himka/wp-json/wp/v2/posts?per_page=25&_embed',
     'Himpunan Mahasiswa Management (HIMME)' => 'https://student-activity.binus.ac.id/himme/wp-json/wp/v2/posts?per_page=25&_embed',
-    'Himpunan Mahasiswa Marketing Communication (HIMMCOMM)' => 'https://student-activity.binus.ac.id/himmcomm/wp-json/wp/v2/posts?per_page=25&_embed',
+    'Himpunan Mahasiswa Communication Department (HIMMCOMM)' => 'https://student-activity.binus.ac.id/himmcomm/wp-json/wp/v2/posts?per_page=25&_embed',
     'Himpunan Mahasiswa Matematika (HIMMAT)' => 'https://student-activity.binus.ac.id/himmat/wp-json/wp/v2/posts?per_page=25&_embed',
     'Himpunan Mahasiswa Pariwisata (HIMPAR)' => 'https://student-activity.binus.ac.id/himpar/wp-json/wp/v2/posts?per_page=25&_embed',
     'Himpunan Mahasiswa Pendidikan Guru Sekolah Dasar (HIMPGSD)' => 'https://student-activity.binus.ac.id/himpgsd/wp-json/wp/v2/posts?per_page=25&_embed',
