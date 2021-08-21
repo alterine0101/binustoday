@@ -13,4 +13,4 @@
 #
 #       - Shiftine
 
-Sitemap: https://binustoday.reinhart1010.id/sitemap.xml
+Sitemap: https://binustoday.reinhart1010.id/sitemap.php

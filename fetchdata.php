@@ -86,6 +86,8 @@ for ($i = 0; $i < count($keys); $i++){
             else if (isset($entry->children('content', TRUE)->encoded)) $item['content'] = (string) $entry->children('content', TRUE)->encoded;
 
             if (strpos($item['id'], '/gallery/') !== false) $item['type'] = 'GALLERY';
+            if (strpos($item['id'], '/video/') !== false) $item['type'] = 'VIDEO';
+            if (strpos($item['id'], '/videos/') !== false) $item['type'] = 'VIDEO';
             if (isset($entry->category) && strtolower($entry->category->attributes()->term) == 'news') $item['type'] = 'NEWS';
             if (isset($item['content']) && strpos($item['content'], 'src="https://open.spotify.com/embed/') !== false) $item['type'] = 'PODCAST';
 
