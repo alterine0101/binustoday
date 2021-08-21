@@ -89,8 +89,8 @@ for ($i = 0; $i < count($keys); $i++){
             if (isset($entry->category) && strtolower($entry->category->attributes()->term) == 'news') $item['type'] = 'NEWS';
             if (isset($item['content']) && strpos($item['content'], 'src="https://open.spotify.com/embed/') !== false) $item['type'] = 'PODCAST';
 
-            if (isset($entry->pubDate)) $item['timestamp'] = (int) strtotime($entry->pubDate);
-            else if (isset($entry->published)) $item['timestamp'] = (int) strtotime($entry->published);
+            if (isset($entry->pubDate)) $item['timestamp'] = (int) strtotime($entry->pubDate . " UTC");
+            else if (isset($entry->published)) $item['timestamp'] = (int) strtotime($entry->published . " UTC");
             else $item['timestamp'] = (int) $entry->timestamp;
             $item['author'] = $key;
             
@@ -107,7 +107,7 @@ for ($i = 0; $i < count($keys); $i++){
         }
 
         print("DONE" . PHP_EOL . PHP_EOL);
-        sleep(10);
+        sleep(5);
     }
 }
 
@@ -147,7 +147,7 @@ if (!$youtube_only) for ($i = 0; $i < count($keys); $i++){
             if (strpos($item['id'], '/gallery/') !== false) $item['type'] = 'GALLERY';
             if (isset($item['content']) && strpos($item['content'], 'src="https://open.spotify.com/embed/') !== false) $item['type'] = 'PODCAST';
 
-            $item['timestamp'] = (int) strtotime($entry['date_gmt']);
+            $item['timestamp'] = (int) strtotime($entry['date_gmt'] . " UTC");
             $item['author'] = $key;
 
             if (isset($entry['_embedded']['wp:term'])) foreach ($entry['_embedded']['wp:term'] as $term){
@@ -174,6 +174,6 @@ if (!$youtube_only) for ($i = 0; $i < count($keys); $i++){
         }
 
         print("DONE" . PHP_EOL . PHP_EOL);
-        sleep(10);
+        sleep(5);
     }
 }
