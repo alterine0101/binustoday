@@ -23,13 +23,11 @@ if ($load_article === false){
         $search = '%' . str_replace(' ', '%', $search) . '%';
         $data = $data->where('summary', 'LIKE', $search);
     } else if ($author_search !== false){
-        echo $author_search;
-
         $data = $data->where('author', $author_search);
-    } else if ($type == 'ALL-OTHER') {
+    } else if ($type == 'ALL-OTHER'){
         // Skip filter
         $data = $data;
-    } else if ($type == 'NEWS-ARTICLES') {
+    } else if ($type == 'NEWS-ARTICLES'){
         $data = $data->where('type', 'ARTICLE')->orWhere('type', 'NEWS');
     } else {
         $data = $data->where('type', strtoupper($type));
@@ -61,6 +59,15 @@ if (count($data) > 0){
         $html_title = 'Posts published by ' . $author_search . ' - ' . $html_title;
         $html_canonical = 'https://binustoday.reinhart1010.id/?author=' . urlencode($author_search);
     }
+}
+
+function generate_url($p){
+    $res = '/index.php?p=' . $p;
+    $keys = array_keys($_GET);
+    foreach ($keys as $key){
+        if ($key != 'p') $res .= '&' . $key . '=' . urlencode($_GET[$key]);
+    }
+    return $res;
 }
 
 ?>
@@ -321,6 +328,9 @@ if (count($data) > 0){
                         <h1 class="p-20 m-0 pb-0">Posts published by <b><?= $_GET['author'] ?></b></h1>
                     <?php endif; ?>
                     <div id="card-container" class="p-20">
+                        <?php if ($index > 1): ?>
+                            <a class="card my-10 mx-0 p-10 text-decoration-none" href="<?= generate_url($index - 1) ?>"><b><i class="bi bi-arrow-left-circle" aria-hidden="true"></i> Go to previous page</b></a>
+                        <?php endif; ?>
                         <?php foreach ($data as $article): ?>
                             <a class="card my-10 mx-0 p-0 text-decoration-none" href="/?a=<?= urlencode($article->id) ?>">
                                 <?php if (strlen($article->cover_image) > 0): ?>
@@ -379,8 +389,8 @@ if (count($data) > 0){
                                     <h4 class="font-weight-bold"><?= $article->title ?></h4>
                                 </div>
                             </a>
-
                         <?php endforeach; ?>
+                        <a class="card my-10 mx-0 p-10 text-decoration-none" href="<?= generate_url($index + 1) ?>"><b>Go to next page <i class="bi bi-arrow-right-circle" aria-hidden="true"></i></b></a>
                     </div>
                 </div>
             <?php else: ?>

@@ -21,6 +21,13 @@ foreach ($argv as $arg){
     }
 }
 
+$opts = [
+    'http' => [
+        'method' => "GET",
+        'header' => "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.126 Safari/537.36 Vivaldi/4.1.2369.11"
+    ]
+];
+
 // Extract RSS feeds
 $keys = array_keys($feeds);
 
@@ -47,7 +54,14 @@ for ($i = 0; $i < count($keys); $i++){
         }
 
         try {
-            $feed = simplexml_load_string(implode(file($url)));
+            $context = stream_context_create($opts);
+            if ($is_youtube){
+                $use_atom = true;
+                $url = str_replace('https://www.youtube.com/feeds/videos.xml?channel_id=', $yt_alt[rand(0, count($yt_alt) - 1)] . 'feed/channel/', $url);
+                print('Replacing URL to ' . $url . PHP_EOL);
+            }
+            $feed = simplexml_load_string(file_get_contents($url, false, $context));
+            // $feed = simplexml_load_file($url);
 
             if (isset($feed->entry)){
                 $entries = $feed->entry;
@@ -67,7 +81,8 @@ for ($i = 0; $i < count($keys); $i++){
 
         foreach ($entries as $entry){
             $item = [];
-            
+
+            // URL and title
             if ($use_atom) {
                 $item['id'] = (string) $entry->link->attributes()->{'href'};
             } else {
@@ -75,31 +90,42 @@ for ($i = 0; $i < count($keys); $i++){
             }
             $item['title'] = (string) $entry->title;
 
-            if (isset($entry->description)) $item['summary'] = (string) $entry->description;
-            else if (isset($entry->children('yt', TRUE)->videoId)){
+            // Description and YouTube detection
+            if (isset($entry->children('yt', TRUE)->videoId)){
                 $item['type'] = 'VIDEO';
                 $item['id'] = 'https://youtube.com/embed/' . ((string) $entry->children('yt', TRUE)->videoId);
                 $item['summary'] = 'YouTube Video';
-            } else $item['summary'] = (string) $entry->summary;
+                $item['cover_image'] = 'https://i3.ytimg.com/vi/' . ((string) $entry->children('yt', TRUE)->videoId) . '/hqdefault.jpg';
+            } else {
+                // Description
+                if (isset($entry->description)) $item['summary'] = (string) $entry->description;
+                else $item['summary'] = (string) $entry->summary;
 
+                // Cover Image
+                if (isset($entry->enclosure)) $item['cover_image'] = (string) $entry->enclosure->attributes()->{'url'};
+                else if (isset($entry->children('media', TRUE)->content)) $item['cover_image'] = (string) $entry->children('media', TRUE)->content->attributes()->url;
+                else if (isset($entry->children('media', TRUE)->group)) $item['cover_image'] = (string) $entry->children('media', TRUE)->group->children('media', TRUE)->thumbnail->attributes()->url;
+
+                // Content type detection
+                if (strpos($item['id'], '/gallery/') !== false) $item['type'] = 'GALLERY';
+                if (strpos($item['id'], '/video/') !== false) $item['type'] = 'VIDEO';
+                if (strpos($item['id'], '/videos/') !== false) $item['type'] = 'VIDEO';
+                if (isset($entry->category) && strtolower($entry->category->attributes()->term) == 'news') $item['type'] = 'NEWS';
+                if (isset($item['content']) && (strpos($item['content'], 'src="https://open.spotify.com/embed/') !== false || strpos($item['content'], 'href="https://open.spotify.com/embed/') !== false)) $item['type'] = 'PODCAST';
+            }
+
+            // Item content
             if (isset($entry->content)) $item['content'] = (string) $entry->content;
             else if (isset($entry->children('content', TRUE)->encoded)) $item['content'] = (string) $entry->children('content', TRUE)->encoded;
 
-            if (strpos($item['id'], '/gallery/') !== false) $item['type'] = 'GALLERY';
-            if (strpos($item['id'], '/video/') !== false) $item['type'] = 'VIDEO';
-            if (strpos($item['id'], '/videos/') !== false) $item['type'] = 'VIDEO';
-            if (isset($entry->category) && strtolower($entry->category->attributes()->term) == 'news') $item['type'] = 'NEWS';
-            if (isset($item['content']) && strpos($item['content'], 'src="https://open.spotify.com/embed/') !== false) $item['type'] = 'PODCAST';
-
+            // Timestamp
             if (isset($entry->pubDate)) $item['timestamp'] = (int) strtotime($entry->pubDate . " UTC");
             else if (isset($entry->published)) $item['timestamp'] = (int) strtotime($entry->published . " UTC");
             else $item['timestamp'] = (int) $entry->timestamp;
+
+            // Author
             $item['author'] = $key;
             
-            if (isset($entry->enclosure)) $item['cover_image'] = (string) $entry->enclosure->attributes()->{'url'};
-            else if (isset($entry->children('media', TRUE)->content)) $item['cover_image'] = (string) $entry->children('media', TRUE)->content->attributes()->url;
-            else if (isset($entry->children('media', TRUE)->group)) $item['cover_image'] = (string) $entry->children('media', TRUE)->group->children('media', TRUE)->thumbnail->attributes()->url;
-
             // print_r($item);
             print('| "' . $item['title'] . '" from ' . $item['author'] . PHP_EOL);
 
