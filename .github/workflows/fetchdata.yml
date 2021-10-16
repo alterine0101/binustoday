@@ -9,12 +9,12 @@ jobs:
   fetch_data:
     runs-on: self-hosted
     steps:
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: '7.4'
-          extensions: mysqli
-      - uses: actions/checkout@v2
-      - run: "php fetchdata.php"
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Setup .env file
+        uses: iamsauravsharma/create-dotenv@1.2.0
+      - name: Fetch new articles
+        run: "php fetchdata.php"
 env:
   DB_USERNAME: ${{secrets.DB_USERNAME}}
   DB_PASSWORD: ${{secrets.DB_PASSWORD}}
