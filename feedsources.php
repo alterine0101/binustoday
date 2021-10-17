@@ -3,17 +3,17 @@
 $feeds = [
     'AIESEC in BINUS' => [
         'https://student-activity.binus.ac.id/aiesec/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/aiesec/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/aiesec/gallery/feed/atom/?paged=2',
     ],
     'Accounting - BINUS Online Learning (BOL)' => 'https://onlinelearning.binus.ac.id/category/accounting-department-article/feed/atom/',
     'B-Preneur' => [
         'https://student-activity.binus.ac.id/b-preneur/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/b-preneur/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/b-preneur/gallery/feed/atom/?paged=2',
     ],
     'Bersama Dalam Musik (BDM)' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCrfLBnydx8J6Rq1Q8AEKqTg',
         'https://student-activity.binus.ac.id/bdm/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/bdm/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/bdm/gallery/feed/atom/?paged=2',
     ],
     'BINUS Group' => [
         // 'https://www.binus.edu/feed/atom/',
@@ -21,27 +21,27 @@ $feeds = [
     ],
     'Bina Nusantara Computer Club (BNCC)' => [
         'https://student-activity.binus.ac.id/bncc/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/bncc/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/bncc/gallery/feed/atom/?paged=2',
     ],
     'Bina Nusantara Finance Club (BNFC)' => [
         'https://student-activity.binus.ac.id/financeclub/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/financeclub/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/financeclub/gallery/feed/atom/?paged=2',
     ],
     'Bina Nusantara Mandarin Club (BNMC)' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCLAOWpVttk5DD9r1W3T5USQ',
         'https://student-activity.binus.ac.id/bnmc/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/bnmc/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/bnmc/gallery/feed/atom/?paged=2',
     ],
     'Bina Nusantara Swimming Club (BASIC)' => [
         'https://student-activity.binus.ac.id/basic/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/basic/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/basic/gallery/feed/atom/?paged=2',
     ],
     'BINUS ASO School of Engineering (BASE)' => [
         'https://base.binus.ac.id/feed/atom/',
-        'https://base.binus.ac.id/feed/atom/?paged=2',
-        'https://base.binus.ac.id/feed/atom/?paged=3',
-        'https://base.binus.ac.id/feed/atom/?paged=4',
-        'https://base.binus.ac.id/feed/atom/?paged=5',
+        //'https://base.binus.ac.id/feed/atom/?paged=2',
+        //'https://base.binus.ac.id/feed/atom/?paged=3',
+        //'https://base.binus.ac.id/feed/atom/?paged=4',
+        //'https://base.binus.ac.id/feed/atom/?paged=5',
     ],
     'BINUS Bandung' => [
         'https://binus.ac.id/bandung/category/gallery/feed/atom',
@@ -50,36 +50,36 @@ $feeds = [
     ],
     'BINUS Business International Club (BIC)' => [
         'https://student-activity.binus.ac.id/bic/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/bic/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/bic/gallery/feed/atom/?paged=2',
     ],
     'BINUS English Club (BNEC)' => [
         'https://student-activity.binus.ac.id/bnec/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/bnec/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/bnec/gallery/feed/atom/?paged=2',
     ],
     'BINUS Game Development Club (BGDC)' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCdDgF6FOjsIfKinPaorLF4Q',
         'https://student-activity.binus.ac.id/bgdc/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/bgdc/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/bgdc/gallery/feed/atom/?paged=2',
     ],
     'BINUS International Association of Information System (BASIS)' => [
         'https://student-activity.binus.ac.id/basis/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/basis/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/basis/gallery/feed/atom/?paged=2',
     ],
     'BINUS International Camera In Action (CIA)' => [
         'https://student-activity.binus.ac.id/cia/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/cia/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/cia/gallery/feed/atom/?paged=2',
     ],
     'BINUS International Community in Christ (CIC)' => [
         'https://student-activity.binus.ac.id/cic/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/cic/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/cic/gallery/feed/atom/?paged=2',
     ],
     'BINUS International Computer Science Society (BINARY)' => [
         'https://student-activity.binus.ac.id/binary/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/binary/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/binary/gallery/feed/atom/?paged=2',
     ],
     'BINUS International Marketing Club (BIMARC)' => [
         'https://student-activity.binus.ac.id/bimarc/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/bimarc/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/bimarc/gallery/feed/atom/?paged=2',
     ],
     'BINUS Malang' => [
         'https://binus.ac.id/malang/category/events/feed/atom/',
@@ -90,24 +90,24 @@ $feeds = [
     'BINUS Square Student Committee (BSSC)' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCnWH_6I6WW9MU2syQ_d_61A',
         'https://student-activity.binus.ac.id/bssc/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/bssc/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/bssc/gallery/feed/atom/?paged=2',
     ],
     'BINUS Student Learning Community (BSLC)' => [
         'https://student-activity.binus.ac.id/bslc/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/bslc/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/bslc/gallery/feed/atom/?paged=2',
     ],
     'BINUS TV' => 'https://www.youtube.com/feeds/videos.xml?channel_id=UCLxjqn6KmvveyFdh5GeObGw',
     'BINUS TV Club' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCT0Y3vLkCm0v5XtMr-w3Uow',
         'https://student-activity.binus.ac.id/binustvclub/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/binustvclub/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/binustvclub/gallery/feed/atom/?paged=2',
     ],
     'BNMC National Mandarin Competition (NMC)' => 'https://www.youtube.com/feeds/videos.xml?channel_id=UCXSZzv05xCC3vo7eSBr_wIg',
     'Business Management - BINUS Online Learning (BOL)' => 'https://onlinelearning.binus.ac.id/category/manajemen-bisnis-article/feed/atom/',
     'BVoice Radio' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UC5QOhgC8MRcwWHDkh2UnqhA',
         'https://student-activity.binus.ac.id/bvoice/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/bvoice/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/bvoice/gallery/feed/atom/?paged=2',
     ],
     'Character Building - BINUS Malang' => 'https://binus.ac.id/malang/category/articles/character-building/feed/atom/',
     'Communication - BINUS Malang' => 'https://binus.ac.id/malang/category/articles/communication/feed/atom/',
@@ -118,112 +118,112 @@ $feeds = [
     'Cyber Security Community (CSC)' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCPyySzUnVwAlh3HJlPPgqEg',
         'https://student-activity.binus.ac.id/csc/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/csc/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/csc/gallery/feed/atom/?paged=2',
     ],
     'Digital Content BINUS' => 'https://www.youtube.com/feeds/videos.xml?channel_id=UCZDXNn-IInmlmZ00wyy4__Q',
     'Entrepreneurship - Business Creation - BINUS Malang' => 'https://binus.ac.id/malang/category/articles/entrepreneurship-business-creation/feed/atom/',
     'First Year Program (FYP)' => 'https://student.binus.ac.id/fyp/feed/atom/',
     'Himpunan Mahasiswa Akuntansi (HIMA)' => [
         'https://student-activity.binus.ac.id/hima/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/hima/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/hima/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Arsitektur (HIMARS)' => [
         'https://student-activity.binus.ac.id/himars/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himars/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himars/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Business Law (HIMSLAW)' => [
         'https://student-activity.binus.ac.id/himslaw/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himslaw/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himslaw/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Desain Interior (HIMDI)' => [
         'https://student-activity.binus.ac.id/himdi/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himdi/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himdi/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Desain Komunikasi Visual (HIMDKV)' => [
         'https://student-activity.binus.ac.id/himdkv/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himdkv/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himdkv/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Hotel Management (HOME)' => [
         'https://student-activity.binus.ac.id/home/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/home/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/home/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Hubungan Internasional (HIMHI)' => [
         'https://student-activity.binus.ac.id/himhi/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himhi/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himhi/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Informatics (HIMFO) BINUS Malang' => 'https://www.youtube.com/feeds/videos.xml?channel_id=UCv5_20gYnK6uv4bp3ESSO9w',
     'Himpunan Mahasiswa Komputerisasi Akuntansi (HIMKA)' => [
         'https://student-activity.binus.ac.id/himka/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himka/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himka/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Management (HIMME)' => [
         'https://student-activity.binus.ac.id/himme/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himme/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himme/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Communication Department (HIMMCOMM)' => [
         'https://himmcommbinus.blogspot.com/feeds/posts/default',
         'https://student-activity.binus.ac.id/himmcomm/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himmcomm/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himmcomm/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Matematika (HIMMAT)' => [
         'https://student-activity.binus.ac.id/himmat/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himmat/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himmat/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Pariwisata (HIMPAR)' => [
         'https://student-activity.binus.ac.id/himpar/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himpar/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himpar/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Pendidikan Guru Sekolah Dasar (HIMPGSD)' => [
         'https://student-activity.binus.ac.id/himpgsd/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himpgsd/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himpgsd/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Psikologi (HIMPSIKO)' => [
         'https://student-activity.binus.ac.id/himpsiko/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himpsiko/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himpsiko/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Sastra Inggris (HIMSI)' => [
         'https://student-activity.binus.ac.id/himsi/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himsi/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himsi/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Sastra Jepang (HIMJA)' => [
         'https://student-activity.binus.ac.id/himja/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himja/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himja/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Sastra Mandarin (HIMANDA)' => [
         'https://student-activity.binus.ac.id/himanda/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himanda/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himanda/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Sistem Informasi (HIMSISFO)' => [
         'https://student-activity.binus.ac.id/himsisfo/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himsisfo/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himsisfo/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Sistem Komputer (HIMTEK)' => [
         'https://student-activity.binus.ac.id/himtek/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himtek/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himtek/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Statistika (HIMSTAT)' => [
         'https://student-activity.binus.ac.id/himstat/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himstat/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himstat/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Teknik Industri (HIMTRI)' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UC7rYgYurvC_npCMNxV-PyHA',
         'https://student-activity.binus.ac.id/himtri/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himtri/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himtri/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Teknik Informatika (HIMTI)' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCnxjFlgW3YpKVkSshFHP_SQ',
         'https://student-activity.binus.ac.id/himti/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himti/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himti/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Teknik Sipil (HIMTES)' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCu7ejxDl-h7hxmlW9EoKcFQ',
         'https://student-activity.binus.ac.id/himtes/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himtes/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himtes/gallery/feed/atom/?paged=2',
     ],
     'Himpunan Mahasiswa Teknik Informatika (HIMTI) Bandung' => 'https://www.youtube.com/feeds/videos.xml?channel_id=UC_bIW8-akHLWn9Mj7PAV8zQ',
     'Himpunan Mahasiswa Teknologi Pangan (HIMFOODTECH)' => [
         'https://student-activity.binus.ac.id/himfoodtech/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/himfoodtech/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/himfoodtech/gallery/feed/atom/?paged=2',
     ],
     'Industrial Engineering - BINUS Online Learning (BOL)' => 'https://onlinelearning.binus.ac.id/category/industrial-engineering-article/feed/atom/',
     'Information Systems - BINUS Online Learning (BOL)' => 'https://onlinelearning.binus.ac.id/category/information-systems-article/feed/atom/',
@@ -231,119 +231,119 @@ $feeds = [
     'Interior Design - BINUS Malang' => 'https://binus.ac.id/malang/category/articles/interior-design/feed/atom/',
     'International Marketing Community of BINUS University (IMCB)' => [
         'https://student-activity.binus.ac.id/imcb/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/imcb/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/imcb/gallery/feed/atom/?paged=2',
     ],
     'ISACA Student Group (ISG)' => [
         'https://student-activity.binus.ac.id/isgbinus/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/isgbinus/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/isgbinus/gallery/feed/atom/?paged=2',
     ],
     'Keluarga Besar Mahasiswa Khonghucu (KBMK)' => [
         'https://student-activity.binus.ac.id/kbmk/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/kbmk/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/kbmk/gallery/feed/atom/?paged=2',
     ],
     'Keluarga Mahasiswa Buddha Dhammavaddhana (KMBD)' => [
         'https://student-activity.binus.ac.id/kmbd/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/kmbd/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/kmbd/gallery/feed/atom/?paged=2',
     ],
     'Keluarga Mahasiswa Hindu (KMH)' => [
         'https://student-activity.binus.ac.id/kmh/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/kmh/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/kmh/gallery/feed/atom/?paged=2',
     ],
     'Keluarga Mahasiswa Katolik (KMK)' => [
         'https://student-activity.binus.ac.id/kmh/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/kmh/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/kmh/gallery/feed/atom/?paged=2',
     ],
     'Klub Seni Fotografi Bina Nusantara (KLIFONARA)' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCOaPd53FsYcXB9LN7Mw_fYw',
         'https://student-activity.binus.ac.id/klifonara/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/klifonara/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/klifonara/gallery/feed/atom/?paged=2',
     ],
     'Language Center - BINUS Malang' => 'https://binus.ac.id/malang/category/articles/language-center/feed/atom/',
     'Mahasiswa Bina Nusantara Pencinta Alam (SWANARAPALA)' => [
         'https://student-activity.binus.ac.id/swanarapala/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/swanarapala/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/swanarapala/gallery/feed/atom/?paged=2',
     ],
     'Majelis Ta’lim (MT) Al-Khawarizmi' => [
         'https://student-activity.binus.ac.id/mt/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/mt/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/mt/gallery/feed/atom/?paged=2',
     ],
     'Nippon Club' => [
         'https://nipponclub.net/rss/',
         'https://student-activity.binus.ac.id/nc/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/nc/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/nc/gallery/feed/atom/?paged=2',
     ],
     'Paduan Suara Mahasiswa Bina Nusantara (PARAMABIRA)' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCygkQ4oOdKVcVCeCXqFZnRQ',
         'https://student-activity.binus.ac.id/paramabira/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/paramabira/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/paramabira/gallery/feed/atom/?paged=2',
     ],
     'Pancasila by Character Building Development Center (CBDC)' => [
         'https://binus.ac.id/character-building/pancasila/feed/atom/',
-        'https://binus.ac.id/character-building/pancasila/feed/atom/?paged=2',
+        //'https://binus.ac.id/character-building/pancasila/feed/atom/?paged=2',
     ],
     'Persekutuan Oikumene (PO)' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCTW8v8bZq0UnioDGdA00UNA',
         'https://student-activity.binus.ac.id/po/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/po/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/po/gallery/feed/atom/?paged=2',
     ],
     'Public Relations - BINUS Malang' => 'https://binus.ac.id/malang/category/articles/public-relations/feed/atom/',
     'School of Information Systems (SIS)' => 'https://www.youtube.com/feeds/videos.xml?channel_id=UCvsnUZKOSK4N9QuhmdBLX0Q',
     'Seni Tari Mahasiswa Bina Nusantara (STAMANARA)' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCC_dfK9GIdtmuexXkPEiPTw',
         'https://student-activity.binus.ac.id/stamanara/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/stamanara/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/stamanara/gallery/feed/atom/?paged=2',
     ],
     'Seni Teater Mahasiswa Bina Nusantara (STMANIS)' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UC4Pr5lSu4WDQ5zJCZjKfS5g',
         'https://student-activity.binus.ac.id/stmanis/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/stmanis/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/stmanis/gallery/feed/atom/?paged=2',
     ],
     'Student BINUS' => 'https://www.youtube.com/feeds/videos.xml?channel_id=UCbObjb4NF91_t6csfgT4Bvg',
     'Tajuk by Character Building Development Center (CBDC)' => 'https://binus.ac.id/character-building/tajuk/feed/atom/',
     'TFI Student Committee (TFISC)' => [
         'https://student-activity.binus.ac.id/tfi/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/tfi/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/tfi/gallery/feed/atom/?paged=2',
     ],
     'UKM Aikido' => [
         'https://student-activity.binus.ac.id/aikido/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/aikido/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/aikido/gallery/feed/atom/?paged=2',
     ],
     'UKM Badminton' => [
         'https://student-activity.binus.ac.id/badminton/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/badminton/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/badminton/gallery/feed/atom/?paged=2',
     ],
     'UKM Band' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UC4vAMrGM02W3YLunigHkwWg', 
         'https://student-activity.binus.ac.id/band/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/band/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/band/gallery/feed/atom/?paged=2',
     ],
     'UKM Basket' => [
         'https://student-activity.binus.ac.id/basket/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/basket/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/basket/gallery/feed/atom/?paged=2',
     ],
     'UKM Karate' => [
         'https://student-activity.binus.ac.id/karate/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/karate/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/karate/gallery/feed/atom/?paged=2',
     ],
     'UKM Merpati Putih (MP)' => [
         'https://student-activity.binus.ac.id/mp/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/mp/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/mp/gallery/feed/atom/?paged=2',
     ],
     'UKM Sepak Bola (BINUS Football Club)' => [
         'https://student-activity.binus.ac.id/sepakbola/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/sepakbola/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/sepakbola/gallery/feed/atom/?paged=2',
     ],
     'UKM Taekwondo' => [
         'https://student-activity.binus.ac.id/taekwondo/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/taekwondo/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/taekwondo/gallery/feed/atom/?paged=2',
     ],
     'UKM Volley' => [
         'https://student-activity.binus.ac.id/volley/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/volley/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/volley/gallery/feed/atom/?paged=2',
     ],
     'UKM Wushu' => [
         'https://student-activity.binus.ac.id/wushu/gallery/feed/atom/',
-        'https://student-activity.binus.ac.id/wushu/gallery/feed/atom/?paged=2',
+        //'https://student-activity.binus.ac.id/wushu/gallery/feed/atom/?paged=2',
     ],
     'Visual Communication Design - BINUS Bandung' => 'https://binus.ac.id/bandung/category/article/visual-communication-design/feed/atom/',
     'Visual Communication Design - BINUS Malang' => 'https://binus.ac.id/malang/category/articles/visual-communication-design/feed/atom/',
@@ -351,7 +351,7 @@ $feeds = [
 
 // Classifies feeds which supports the WP-JSON APIs
 $feeds_wp_json = [
-    'Accounting - Faculty of Economic & Communication' => 'https://accounting.binus.ac.id/wp-json/wp/v2/posts?per_page=50&_embed',
+    'Accounting - Faculty of Economic & Communication' => 'https://accounting.binus.ac.id/wp-json/wp/v2/posts?per_page=25&_embed',
     'AIESEC in BINUS' => 'https://student-activity.binus.ac.id/aiesec/wp-json/wp/v2/posts?per_page=25&_embed',
     'Architecture - Faculty of Engineering' => 'https://architecture.binus.ac.id/wp-json/wp/v2/posts?per_page=25&_embed',
     'B-Preneur' => 'https://student-activity.binus.ac.id/b-preneur/wp-json/wp/v2/posts?per_page=25&_embed',
