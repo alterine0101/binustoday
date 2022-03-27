@@ -351,7 +351,7 @@ $feeds = [
 
 // Classifies feeds which supports the WP-JSON APIs
 $feeds_wp_json = [
-    'Accounting - Faculty of Economic & Communication' => 'https://accounting.binus.ac.id/wp-json/wp/v2/posts?per_page=25&_embed',
+    // 'Accounting - Faculty of Economic & Communication' => 'https://accounting.binus.ac.id/wp-json/wp/v2/posts?per_page=25&_embed',
     'AIESEC in BINUS' => 'https://student-activity.binus.ac.id/aiesec/wp-json/wp/v2/posts?per_page=25&_embed',
     'Architecture - Faculty of Engineering' => 'https://architecture.binus.ac.id/wp-json/wp/v2/posts?per_page=25&_embed',
     'B-Preneur' => 'https://student-activity.binus.ac.id/b-preneur/wp-json/wp/v2/posts?per_page=25&_embed',
