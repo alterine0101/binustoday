@@ -462,7 +462,7 @@ $feeds_wp_json = [
 ];
 
 // Alternative video sources
-$yt_alt = ['https://invidio.xamh.de/', 'https://youtube.076.ne.jp/', 'https://vid.puffyan.us/'];
+$yt_alt = ['https://invidio.xamh.de/', 'https://youtube.076.ne.jp/', 'https://vid.puffyan.us/', 'https://invidious.weblibre.org/']
 
 $authors = [];
 foreach(array_keys($feeds) as $feed) $authors[$feed] = true;
