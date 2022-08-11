@@ -410,8 +410,8 @@ function generate_url($p){
                 </div>
             <?php else: ?>
                 <?php $should_force_iframe = strpos($data[0]->id, 'youtube.com/embed/') !== false || strlen($data[0]->content) == 0; ?>
-                <iframe id="originalArticle" style="width: 100%; height: 100%; border:0;<?= $should_force_iframe ? ' display: none' : '' ?>" src="<?= $data[0]->id ?>?utm_source=binustoday&utm_campaign=binustodayarticleview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                <?php if ($should_force_iframe): ?>
+                <iframe id="originalArticle" style="width: 100%; height: 100%; border:0;<?= $should_force_iframe ? '' : ' display: none' ?>" src="<?= $data[0]->id ?>?utm_source=binustoday&utm_campaign=binustodayarticleview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <?php if (!$should_force_iframe): ?>
                     <article id="readerView">
                         <?php if (strlen($data[0]->cover_image) > 0): ?>
                             <img style="width: 100%; height: auto" src="<?= $data[0]->cover_image ?>">
