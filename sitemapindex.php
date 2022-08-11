@@ -15,7 +15,7 @@ header("X-BinusToday-TotalArticles: $count");
         $total_indexes = (int) ceil($count / $take) + 1;
         header("X-BinusToday-TotalIndexes: $total_indexes");
         for ($i = 1; $i <= $total_indexes; $i++) {
-            echo "<sitemap><loc>sitemap.php?page=$i</loc></sitemap>";
+            echo "<sitemap><loc>https://binustoday.reinhart1010.id/sitemap.php?page=$i</loc></sitemap>";
         }
     ?>
 </sitemapindex>
