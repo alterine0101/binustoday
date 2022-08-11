@@ -14,7 +14,7 @@ $take = 100;
 
     <?php
 
-    if ($page == 1) {
+    if ($page <= 1) {
         echo "
         <url>
             <loc>https://binustoday.reinhart1010.id/</loc>
@@ -23,57 +23,54 @@ $take = 100;
             <priority>1.00</priority>
         </url>
         ";
-    }
 
-    $articles = db::table('articles')->skip(($page - 1) * $take)->take($take)->orderBy('timestamp', 'desc')->get();
-    header('X-BinusToday-TotalArticles: ' . count($articles));
-    
-    foreach ($articles as $article){
-        $date = gmdate("Y-m-d", $article->timestamp);
-        $url = 'https://binustoday.reinhart1010.id/?a=' . urlencode($article->id);
-        $change_freq = 'weekly';
-
-        $article_time = new DateTime();
-        $article_time->setTimestamp($article->timestamp);
-        $now = new DateTime();
-        $diff = $article_time->diff($now);
-
-        if ($diff->days > 28){
-            $change_freq = 'monthly';
+        foreach (array_keys($authors) as $author){
+            $url = 'https://binustoday.reinhart1010.id/?author=' . urlencode($author);
+            $date = ($authors[$author] !== true) ? gmdate('Y-m-d', $authors[$author]) : gmdate('Y-m-d');
+            echo "
+            <url>
+                <loc>$url</loc>
+                <lastmod>$date</lastmod>
+                <changefreq>weekly</changefreq>
+                <priority>0.9</priority>
+            </url>";
         }
-        if ($diff->days > 84){
-            $change_freq = 'yearly';
+    } else {
+        $articles = db::table('articles')->skip(($page - 2) * $take)->take($take)->orderBy('timestamp', 'desc')->get();
+        header('X-BinusToday-TotalArticles: ' . count($articles));
+        
+        foreach ($articles as $article){
+            $date = gmdate("Y-m-d", $article->timestamp);
+            $url = 'https://binustoday.reinhart1010.id/?a=' . urlencode($article->id);
+            $change_freq = 'weekly';
+
+            $article_time = new DateTime();
+            $article_time->setTimestamp($article->timestamp);
+            $now = new DateTime();
+            $diff = $article_time->diff($now);
+
+            if ($diff->days > 28){
+                $change_freq = 'monthly';
+            }
+            if ($diff->days > 84){
+                $change_freq = 'yearly';
+            }
+            if ($diff->days > 364){
+                $change_freq = 'never';
+            };
+
+            if (isset($authors[$article->author]) && $authors[$article->author] === true){
+                $authors[$article->author] = $article->timestamp;
+            }
+
+            echo "
+            <url>
+                <loc>$url</loc>
+                <lastmod>$date</lastmod>
+                <changefreq>$change_freq</changefreq>
+                <priority>0.8</priority>
+            </url>";
         }
-        if ($diff->days > 364){
-            $change_freq = 'never';
-        };
-
-        if (isset($authors[$article->author]) && $authors[$article->author] === true){
-            $authors[$article->author] = $article->timestamp;
-        }
-
-        echo "
-        <url>
-            <loc>$url</loc>
-            <lastmod>$date</lastmod>
-            <changefreq>$change_freq</changefreq>
-            <priority>0.8</priority>
-        </url>";
     }
-
-    foreach (array_keys($authors) as $author){
-        $url = 'https://binustoday.reinhart1010.id/?author=' . urlencode($author);
-        $date = ($authors[$author] !== true) ? gmdate('Y-m-d', $authors[$author]) : gmdate('Y-m-d');
-
-        echo "
-
-        <url>
-            <loc>$url</loc>
-            <lastmod>$date</lastmod>
-            <changefreq>weekly</changefreq>
-            <priority>0.9</priority>
-        </url>";
-    }
-
 ?>
 </urlset>
