@@ -5,7 +5,7 @@ header('Content-type: text/xml');
 echo '<?xml version="1.0" encoding="UTF-8" ?>';
 
 $page = 1;
-if (isset($_GET['page']) && strlen($_GET['page']) > 0) $page = (int) filter_var($_GET['skip'], FILTER_SANITIZE_STRING);
+if (isset($_GET['page']) && strlen($_GET['page']) > 0) $page = (int) filter_var($_GET['page'], FILTER_SANITIZE_STRING);
 $take = 100;
 
 ?>
