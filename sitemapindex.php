@@ -11,7 +11,7 @@ header("X-BinusToday-TotalArticles: $count");
 
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <?php
-        // Index 1 is always for authors
+        /* Index 1 is always for authors */
         $total_indexes = (int) ceil($count / $take) + 1;
         header("X-BinusToday-TotalIndexes: $total_indexes");
         for ($i = 1; $i <= $total_indexes; $i++) {
