@@ -4,23 +4,28 @@ require_once('./dbconnection.php');
 header("Content-type: text/xml");
 echo '<?xml version="1.0" encoding="UTF-8" ?>';
 
+$page = 1;
+if (isset($_GET['page']) && strlen($_GET['page']) > 0) $page = (int) filter_var($_GET['skip'], FILTER_SANITIZE_STRING);
+$take = 100;
+
 ?>
 
 <urlset xmlns="http://www.google.com/schemas/sitemap/0.84" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.google.com/schemas/sitemap/0.84 http://www.google.com/schemas/sitemap/0.84/sitemap.xsd">
 
     <?php
 
-    echo "
-    
-    <url>
-        <loc>https://binustoday.reinhart1010.id/</loc>
-        <lastmod>" . gmdate("Y-m-d") . "</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>1.00</priority>
-    </url>
-    ";
+    if ($page == 1) {
+        echo "
+        <url>
+            <loc>https://binustoday.reinhart1010.id/</loc>
+            <lastmod>" . gmdate("Y-m-d") . "</lastmod>
+            <changefreq>daily</changefreq>
+            <priority>1.00</priority>
+        </url>
+        ";
+    }
 
-    $articles = db::table('articles')->orderBy('timestamp', 'desc')->get();
+    $articles = db::table('articles')->skip(($page - 1) * $take)->take($take)->orderBy('timestamp', 'desc')->get();
 
     foreach ($articles as $article){
         $date = gmdate("Y-m-d", $article->timestamp);

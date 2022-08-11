@@ -114,7 +114,7 @@ function generate_url($p){
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
 
     <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.0/font/bootstrap-icons.css">
 
     <!-- FontAwesome 5 Brands -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.1/css/all.min.css">
@@ -162,6 +162,9 @@ function generate_url($p){
         }
         body:not(.dark-mode) .placeholder-image.filemagz {
             background-color: #000000;
+        }
+        .article-title {
+            letter-spacing: -0.1125rem;
         }
         
         .wp-block-image img {
@@ -273,6 +276,18 @@ function generate_url($p){
                         <i class="bi bi-play-circle" aria-hidden="true"></i>
                     </span>
                     Videos
+                </a>
+                <a href="#" class="sidebar-link sidebar-link-with-icon">
+                    <span class="sidebar-icon">
+                        <i class="bi bi-calendar2-week" aria-hidden="true"></i>
+                    </span>
+                    Events (Coming Soon)
+                </a>
+                <a href="#" class="sidebar-link sidebar-link-with-icon">
+                    <span class="sidebar-icon">
+                        <i class="bi bi-app-indicator"></i>
+                    </span>
+                    Mobile App (Coming Soon)
                 </a>
                 <br>
                 <h5 class="sidebar-title">About</h5>
@@ -422,7 +437,7 @@ function generate_url($p){
                                     } ?><?= $data[0]->type ?></span>
                                 </b>
                             </p>
-                            <h1 class="font-weight-bold"><?= $data[0]->title ?></h1>
+                            <h1 class="font-weight-bold article-title"><?= $data[0]->title ?></h1>
                             <h5>
                                 By <b><?= $data[0]->author ?></b> &bull;
                                 <?php
