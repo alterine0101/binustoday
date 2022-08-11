@@ -5,7 +5,7 @@ header('Content-type: text/xml');
 echo '<?xml version="1.0" encoding="UTF-8" ?>';
 
 $take = 100;
-$count = db::table('articles')->selectRaw('count(*) as count')->get()->count;
+$count = db::table('articles')->selectRaw('count(*) as count')->first()->count;
 header("X-BinusToday-TotalArticles: $count");
 ?>
 
