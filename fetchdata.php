@@ -200,6 +200,9 @@ if (!$youtube_only) for ($i = 0; $i < count($keys); $i++){
                 db::table('articles')->where('id', $item['id'])->update($item);
             } else db::table('articles')->insert($item);
         }
+        
+        db::table('articles')->where('summary', '')->update(['summary' => null]);
+        db::table('articles')->where('content', '')->update(['content' => null]);
 
         print("DONE" . PHP_EOL . PHP_EOL);
         sleep(5);
