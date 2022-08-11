@@ -1,7 +1,7 @@
 <?php
 require_once('./dbconnection.php');
 
-header("Content-type: text/xml");
+header('Content-type: text/xml');
 echo '<?xml version="1.0" encoding="UTF-8" ?>';
 
 $page = 1;
@@ -26,7 +26,8 @@ $take = 100;
     }
 
     $articles = db::table('articles')->skip(($page - 1) * $take)->take($take)->orderBy('timestamp', 'desc')->get();
-
+    header('X-BinusToday-TotalArticles: ' . count($articles));
+    
     foreach ($articles as $article){
         $date = gmdate("Y-m-d", $article->timestamp);
         $url = 'https://binustoday.reinhart1010.id/?a=' . urlencode($article->id);
@@ -52,7 +53,6 @@ $take = 100;
         }
 
         echo "
-
         <url>
             <loc>$url</loc>
             <lastmod>$date</lastmod>
