@@ -14,13 +14,13 @@ for (i = 0; i < children0.length; i++){
     switch (child0.tagName){
         case "P":
             // Ensure everything is left-aligned, not justified
-            if (child0.style.textAlign == "justified") child0.style.textAlign = "left";
+            if (child0.style.textAlign == "justify") child0.style.textAlign = "left";
 
             try {
                 var children1 = child0.childNodes;
                 console.log(children1[0].outerText);
                 // Ensure everything is left-aligned, not justified
-                if (children1[0].style.textAlign == "justified") children1[0].style.textAlign = "left";
+                if (children1[0].style.textAlign == "justify") children1[0].style.textAlign = "left";
 
                 // Replace <p> tags with "1. ABC" content to become <h3> subheadings
                 if (children1.length > 0 && children1[0].outerText.matches(/^[1-9][0-9]*\s*[.:-][\w\W]+$/gi)){
