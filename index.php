@@ -171,6 +171,10 @@ function generate_url($p){
             width: 100%;
             height: auto;
         }
+
+        #articlecontent img {
+            max-width: 100%;
+        }
     </style>
     </head>
     <body class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true" data-sidebar-shortcut-enabled="true" data-set-preferred-mode-onload="true">

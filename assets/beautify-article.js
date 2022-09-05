@@ -13,6 +13,9 @@ for (i = 0; i < children0.length; i++){
     var child0 = children0[i];
     switch (child0.tagName){
         case "P":
+            // Ensure everything is left-aligned, not justified
+            if (child0.style.textAlign == "justified") child0.style.textAlign = "left";
+
             var children1 = child0.childNodes;
             console.log(children1[0].outerText);
 
