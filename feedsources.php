@@ -96,7 +96,22 @@ $feeds = [
         'https://student-activity.binus.ac.id/bslc/gallery/feed/atom/',
         //'https://student-activity.binus.ac.id/bslc/gallery/feed/atom/?paged=2',
     ],
-    'BINUS TV' => 'https://www.youtube.com/feeds/videos.xml?channel_id=UCLxjqn6KmvveyFdh5GeObGw',
+    'BINUS TV' => [
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UCLxjqn6KmvveyFdh5GeObGw', // BINUS TV Channel
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UC7ZXqkXnYMmKlX_Z1-9Avxg', // BINUS TV Live
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UCTQGFZB4tNKI9BL8U-_RAPg', // HOW TO
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UCrhPPN1FS-PXq8L-P-dafQg', // Zoom In
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UCv49VuXkZTGBIy7a4Hund1g', // Movie Freak
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UCYWLdKv5966ByZsJ0afYR-A', // RELOAD: Games On Review
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UC3eJXZPB9V2rDepqPmn0QXQ', // Radionet Show
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UCMP3EY1zgPIAC9JDaxVW6ow', // Neo Bcoustic
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UCeuc_bAm9R5Ax3rD5Uw9MEQ', // Sosok
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UC_ItZiFSVvyvMUa5eWgQPXg', // Gado-Gado
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UCbj841gSfNZ9deaib1gbfAA', // Intertaste
+        /* Not available on BINUS TV Android App */
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UC0eepGSO_sd4VKuDVbo90MQ', // Hashtag Jakarta
+        'https://www.youtube.com/feeds/videos.xml?channel_id=UC6lKQjZarhlWy87SCgxGJfg' // Travel's Checklist
+    ],
     'BINUS TV Club' => [
         'https://www.youtube.com/feeds/videos.xml?channel_id=UCT0Y3vLkCm0v5XtMr-w3Uow',
         'https://student-activity.binus.ac.id/binustvclub/gallery/feed/atom/',
@@ -375,7 +390,7 @@ $feeds_wp_json = [
     'BINUS Square' => 'https://binus.ac.id/binussquare/wp-json/wp/v2/posts?per_page=25&_embed',
     'BINUS Square Student Committee (BSSC)' => 'https://student-activity.binus.ac.id/bssc/wp-json/wp/v2/posts?per_page=25&_embed',
     'BINUS Student Learning Community (BSLC)' => 'https://student-activity.binus.ac.id/bslc/wp-json/wp/v2/posts?per_page=25&_embed',
-    // 'BINUS TV' => 'https://binus.tv/wp-json/wp/v2/posts?per_page=25&_embed',
+    'BINUS TV' => 'https://binus.tv/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS TV Club' => 'https://student-activity.binus.ac.id/binustvclub/wp-json/wp/v2/posts?per_page=25&_embed',
     'BINUS University' => 'https://binus.ac.id/wp-json/wp/v2/posts?per_page=25&_embed',
     'BINUS English Club (BNEC)' => 'https://student-activity.binus.ac.id/bnec/wp-json/wp/v2/posts?per_page=25&_embed',
