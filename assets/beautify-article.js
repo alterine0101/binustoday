@@ -16,21 +16,27 @@ for (i = 0; i < children0.length; i++){
             // Ensure everything is left-aligned, not justified
             if (child0.style.textAlign == "justified") child0.style.textAlign = "left";
 
-            var children1 = child0.childNodes;
-            console.log(children1[0].outerText);
+            try {
+                var children1 = child0.childNodes;
+                console.log(children1[0].outerText);
+                // Ensure everything is left-aligned, not justified
+                if (children1[0].style.textAlign == "justified") children1[0].style.textAlign = "left";
 
-            // Replace <p> tags with "1. ABC" content to become <h3> subheadings
-            if (children1.length > 0 && children1[0].outerText.matches(/^[1-9][0-9]*\s*[.:-][\w\W]+$/gi)){
-                var newElement = document.createElement("h3");
-                while (child0.firstChild) {
-                    // Remove font-weight: 400;
-                    child0.firstChild.style.fontWeight = "600";
-                    newElement.appendChild(child0.firstChild);
+                // Replace <p> tags with "1. ABC" content to become <h3> subheadings
+                if (children1.length > 0 && children1[0].outerText.matches(/^[1-9][0-9]*\s*[.:-][\w\W]+$/gi)){
+                    var newElement = document.createElement("h3");
+                    while (child0.firstChild) {
+                        // Remove font-weight: 400;
+                        child0.firstChild.style.fontWeight = "600";
+                        newElement.appendChild(child0.firstChild);
+                    }
+                    for (j = child0.attributes.length - 1; j >= 0; j--) {
+                        newElement.attributes.setNamedItem(child0.attributes[j].cloneNode());
+                    }
+                    content.replaceChild(newElement, child0);
                 }
-                for (j = child0.attributes.length - 1; j >= 0; j--) {
-                    newElement.attributes.setNamedItem(child0.attributes[j].cloneNode());
-                }
-                content.replaceChild(newElement, child0);
+            } catch (e) {
+
             }
             break;
         
