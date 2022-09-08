@@ -390,7 +390,7 @@ $feeds_wp_json = [
     'BINUS Square' => 'https://binus.ac.id/binussquare/wp-json/wp/v2/posts?per_page=25&_embed',
     'BINUS Square Student Committee (BSSC)' => 'https://student-activity.binus.ac.id/bssc/wp-json/wp/v2/posts?per_page=25&_embed',
     'BINUS Student Learning Community (BSLC)' => 'https://student-activity.binus.ac.id/bslc/wp-json/wp/v2/posts?per_page=25&_embed',
-    'BINUS TV' => 'https://binus.tv/wp-json/wp/v2/posts?per_page=50&_embed',
+    'BINUS TV' => 'https://www.binus.tv/wp-json/wp/v2/posts?per_page=50&_embed',
     'BINUS TV Club' => 'https://student-activity.binus.ac.id/binustvclub/wp-json/wp/v2/posts?per_page=25&_embed',
     'BINUS University' => 'https://binus.ac.id/wp-json/wp/v2/posts?per_page=25&_embed',
     'BINUS English Club (BNEC)' => 'https://student-activity.binus.ac.id/bnec/wp-json/wp/v2/posts?per_page=25&_embed',
