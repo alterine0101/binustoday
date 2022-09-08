@@ -31,6 +31,9 @@ $opts = [
 // Extract RSS feeds
 $keys = array_keys($feeds);
 
+// Shuffle to minimize breakage
+shuffle($keys);
+
 for ($i = 0; $i < count($keys); $i++){
     $key = $keys[$i];
     if (!is_array($feeds[$key])){
@@ -60,7 +63,12 @@ for ($i = 0; $i < count($keys); $i++){
                 $url = str_replace('https://www.youtube.com/feeds/videos.xml?channel_id=', $yt_alt[rand(0, count($yt_alt) - 1)] . 'feed/channel/', $url);
                 print('Replacing URL to ' . $url . PHP_EOL);
             }
-            $feed = simplexml_load_string(file_get_contents($url, false, $context));
+            $raw_feed = file_get_contents($url, false, $context);
+            if ($raw_feed === false) {
+                print('Skipping parsing as feed cannot be fetched');
+                continue;
+            };
+            $feed = simplexml_load_string($raw_feed);
             // $feed = simplexml_load_file($url);
 
             if (isset($feed->entry)){
