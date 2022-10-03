@@ -15,6 +15,7 @@ while ($index < $total_articles) {
         curl_setopt($ch, CURLOPT_URL, $article->id);
         curl_setopt($ch, CURLOPT_NOBODY, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 1);
         curl_exec($ch);
         $is404 = curl_getinfo($ch, CURLINFO_HTTP_CODE) == 404;
         curl_close($ch);
