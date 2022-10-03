@@ -13,16 +13,9 @@ while ($index < $total_articles) {
     $articles = db::table('articles')->select(['id'])->skip($index)->take(15)->orderBy('timestamp', 'desc')->get();
     $currently_removed = 0;
     foreach ($articles as $article) {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $article->id);
-        curl_setopt($ch, CURLOPT_NOBODY, 1);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HEADER, 1);
-        curl_exec($ch);
-        $is404 = curl_getinfo($ch, CURLINFO_HTTP_CODE) == 404;
-        curl_close($ch);
+        $test = get_headers($article->id);
 
-        if ($is404) {
+        if (!str_ends_with($test[0], '200 OK')) {
             db::table('articles')->where('id', $article->id)->delete();
             $currently_removed++;
             print("X | Removed $article->id" . PHP_EOL);
