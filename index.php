@@ -118,6 +118,9 @@ function generate_url($p){
 
     <!-- FontAwesome 5 Brands -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.1/css/all.min.css">
+    
+    <!-- Google AdSense JS -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6503953249125893" crossorigin="anonymous"></script>
 
     <style>
         body {
@@ -321,6 +324,9 @@ function generate_url($p){
                     Donate <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
                 </a>
                 <br>
+                <!-- In-Feed Ad -->
+                <ins class="adsbygoogle" style="display:block" data-ad-format="fluid" data-ad-layout-key="-gc+3r+68-9q-29" data-ad-client="ca-pub-6503953249125893" data-ad-slot="9090140234"></ins>
+                <br>
                 <h5 class="sidebar-title">Authors</h5>
                 <?php foreach(array_keys($authors) as $feed): ?>
                     <div class="sidebar-divider"></div>
@@ -337,6 +343,8 @@ function generate_url($p){
             <?php if ($not_found): ?>
                 <div class="container">
                     <h1>404: Not Found</h1>
+                    <!-- Multiplex Ad -->
+                    <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="ca-pub-6503953249125893" data-ad-slot="2529674116"></ins>
                 </div>
             <?php elseif ($load_article === false): ?>
                 <div class="container">
@@ -350,7 +358,13 @@ function generate_url($p){
                         <?php if ($index > 1): ?>
                             <a class="card my-10 mx-0 p-10 text-decoration-none" href="<?= generate_url($index - 1) ?>"><b><i class="bi bi-arrow-left-circle" aria-hidden="true"></i> Go to previous page</b></a>
                         <?php endif; ?>
+                        <?php $article_count = 0; ?>
                         <?php foreach ($data as $article): ?>
+                            <?php $article_count++; ?>
+                            <?php if ($article_count % 5 == 0): ?>
+                                <!-- BINUSToday Sponsored Card -->
+                                <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6503953249125893" data-ad-slot="5841985741" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                            <?php endif; ?>
                             <a class="card my-10 mx-0 p-0 text-decoration-none" href="/?a=<?= urlencode($article->id) ?>">
                                 <?php if (strlen($article->cover_image) > 0): ?>
                                     <img style="width: 100%; height: auto" src="<?= $article->cover_image ?>" class="mb-10">
@@ -485,6 +499,8 @@ function generate_url($p){
                                 <a onClick="document.getElementById('originalArticle').style.display = 'block'; document.getElementById('readerView').style.display = 'none';">View Original Article</a>
                             </div>
                             <script src="assets/beautify-article.js"></script>
+                            <!-- Multiplex Ad -->
+                            <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="ca-pub-6503953249125893" data-ad-slot="2529674116"></ins>
                         </div>
                     </article>
                 <?php endif; ?>
@@ -497,5 +513,10 @@ function generate_url($p){
 
     <!-- Halfmoon JS -->
     <script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/js/halfmoon.min.js"></script>
+
+    <!-- Google AdSense JS -->
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
 </body>
 </html>
