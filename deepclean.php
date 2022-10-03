@@ -15,7 +15,7 @@ while ($index < $total_articles) {
     foreach ($articles as $article) {
         $test = get_headers($article->id);
 
-        if (!str_ends_with($test[0], '200 OK')) {
+        if (str_contains($test[0], '404')) {
             db::table('articles')->where('id', $article->id)->delete();
             $currently_removed++;
             print("X | Removed $article->id" . PHP_EOL);
