@@ -3,13 +3,13 @@ require_once('./dbconnection.php');
 
 print('Starting deep cleaning process...' . PHP_EOL);
 
-$skip = getenv('DEEPCLEAN_SKIP');
+$skip = getenv('INPUT_DEEPCLEAN_SKIP');
 $skip = $skip == false ? 0 : ((int)$skip);
 
-$total_articles = getenv('DEEPCLEAN_TAKE');
+$total_articles = getenv('INPUT_DEEPCLEAN_TAKE');
 $total_articles = ($total_articles == false ||  (int)$total_articles <= 0) ? db::table('articles')->count() : (int)$total_articles;
 
-$filter = getenv('DEEPCLEAN_FILTER');
+$filter = getenv('INPUT_DEEPCLEAN_FILTER');
 if ($filter != false) {
   $filter = stripslashes(mysql_real_escape_string($filter));
 }
