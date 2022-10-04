@@ -23,7 +23,7 @@ while ($index < $total_articles) {
     $TAKE = 10;
     $articles = db::table('articles')->select(['id'])->skip($skip + $index);
     if ($filter != false) {
-        $articles->whereRaw("id LIKE $filter");
+        $articles->whereRaw("id LIKE '%$filter%'");
     }
     $articles = $articles->take(15)->orderBy('timestamp', 'desc')->get();
     $currently_removed = 0;
