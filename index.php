@@ -306,7 +306,7 @@ function generate_url($p) {
                         <?php endif; ?>
                         <?php
                             $_SESSION['articles'] = $data;
-                            require('components/post_list');
+                            require('components/post_list.php');
                         ?>
                         <a class="card my-10 mx-0 p-10 text-decoration-none" href="<?= generate_url($index + 1) ?>"><b>Go to next page <i class="bi bi-arrow-right-circle" aria-hidden="true"></i></b></a>
                     </div>
