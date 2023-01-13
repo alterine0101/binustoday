@@ -53,8 +53,8 @@ if (count($data) > 0) {
         $html_description = substr(strip_tags($data[0]->summary), 0, 160);
         if (strlen($data[0]->cover_image) > 0) $html_og_cover = $data[0]->cover_image;
         $html_canonical = $data[0]->id;
-        $more_articles_by_author = db::table('articles')->where('author', $data[0]->author)->whereNot('id', $data[0]->id)->take(5)->orderBy('timestamp', 'desc')->get();
-        $more_articles_by_others = db::table('articles')->where('author', 'not', $data[0]->author)->whereNot('id', $data[0]->id)->take(5)->orderBy('timestamp', 'desc')->get();
+        $more_articles_by_author = db::table('articles')->where('author', $data[0]->author)->where('id', '!=', $data[0]->id)->take(5)->orderBy('timestamp', 'desc')->get();
+        $more_articles_by_others = db::table('articles')->where('author', '!=', $data[0]->author)->where('id', '!=', $data[0]->id)->take(5)->orderBy('timestamp', 'desc')->get();
     } else if ($search !== false) {
         $html_title = 'Search results for ' . $search . ' - ' . $html_title;
     } else if ($author_search !== false) {
