@@ -53,7 +53,7 @@
                 </b> &bull;
                 <?php
                     $_SESSION['article'] = $article;
-                    require('./article_time.php');
+                    require('components/article_time.php');
                 ?>
             </p>
             <h4 class="font-weight-bold"><?= $article->title ?></h4>
