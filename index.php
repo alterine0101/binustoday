@@ -18,16 +18,16 @@ $offset = ($index - 1) * $limit;
 $data = db::table('articles');
 $not_found = false;
 
-if ($load_article === false){
-    if ($search !== false){
+if ($load_article === false) {
+    if ($search !== false) {
         $search = '%' . str_replace(' ', '%', $search) . '%';
         $data = $data->where('summary', 'LIKE', $search);
-    } else if ($author_search !== false){
+    } else if ($author_search !== false) {
         $data = $data->where('author', $author_search);
-    } else if ($type == 'ALL-OTHER'){
+    } else if ($type == 'ALL-OTHER') {
         // Skip filter
         $data = $data;
-    } else if ($type == 'NEWS-ARTICLES'){
+    } else if ($type == 'NEWS-ARTICLES') {
         $data = $data->where('type', 'ARTICLE')->orWhere('type', 'NEWS');
     } else {
         $data = $data->where('type', strtoupper($type));
@@ -37,7 +37,7 @@ if ($load_article === false){
 } else {
     $data = $data->where('id', $load_article)->get();
 }
-if (count($data) == 0){
+if (count($data) == 0) {
     http_response_code(404);
     $not_found = true;
 }
@@ -47,24 +47,43 @@ $html_description = 'Trending news and articles from over 100 departments, facul
 $html_og_cover = 'https://binustoday.reinhart1010.id/assets/og-cover.jpg';
 $html_canonical = 'https://binustoday.reinhart1010.id/';
 
-if (count($data) > 0){
-    if ($load_article !== false){
+if (count($data) > 0) {
+    if ($load_article !== false) {
         $html_title = $data[0]->title . ' - ' . $html_title;
         $html_description = substr(strip_tags($data[0]->summary), 0, 160);
         if (strlen($data[0]->cover_image) > 0) $html_og_cover = $data[0]->cover_image;
         $html_canonical = $data[0]->id;
-    } else if ($search !== false){
+    } else if ($search !== false) {
         $html_title = 'Search results for ' . $search . ' - ' . $html_title;
-    } else if ($author_search !== false){
+    } else if ($author_search !== false) {
         $html_title = 'Posts published by ' . $author_search . ' - ' . $html_title;
         $html_canonical = 'https://binustoday.reinhart1010.id/?author=' . urlencode($author_search);
     }
 }
 
-function generate_url($p){
+function generate_share_sheet() {
+    return <<<HTML
+    <div class="alert px-15" role="alert">
+        <h4 class="alert-heading font-weight-bold">Share to your friends:</h4>
+        <div class="d-flex flex-wrap justify-content-between my-10">
+            <a class="text-white btn btn-square rounded-circle btn-lg" href="https://social-plugins.line.me/lineit/share?url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #06c755"><i class="fa-lg fab fa-line" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">LINE</span></a>
+            <a class="text-white btn btn-square rounded-circle btn-lg" href="https://wa.me/send?text=%2A<?= urlencode($data[0]->title) ?>%2A%0A<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #25D366"><i class="fa-lg fab fa-whatsapp" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">WhatsApp</span></a>
+            <a class="text-white btn btn-square rounded-circle btn-lg" href="https://twitter.com/share?text=<?= urlencode($data[0]->title) ?>&amp;url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #1DA1F2"><i class="fa-lg fab fa-twitter" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Twitter</span></a>
+            <a class="text-white btn btn-square rounded-circle btn-lg" href="https://t.me/share/url?text=<?= urlencode($data[0]->title) ?>&amp;url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #FE4500"><i class="fa-lg fab fa-telegram" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Telegram</span></a>
+            <a class="text-white btn btn-square rounded-circle btn-lg" href="https://www.facebook.com/sharer/sharer.php?u=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #1977F2"><i class="fa-lg fab fa-facebook" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Facebook</span></a>
+            <a class="text-white btn btn-square rounded-circle btn-lg" href="https://www.linkedin.com/shareArticle?text=<?= urlencode($data[0]->title) ?>&amp;url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #0077B5"><i class="fa-lg fab fa-linkedin" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">LinkedIn</span></a>
+            <a class="text-white btn btn-square rounded-circle btn-lg" href="mailto:?body=<?= urlencode($data[0]->title) ?> <?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #ff4d4f"><i class="fa-lg bi bi-envelope" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Email</span></a>
+            <a class="btn btn-square rounded-circle btn-lg"><i class="fa-lg bi bi-three-dots" aria-hidden="true" onclick="try{navigator.share({title: '<?= filter_var($data[0]->title, FILTER_SANITIZE_STRING) ?>',url: '<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>'})} catch(e) {document.getElementById('share-modal-url').value = '<?= 'http://' . $_SERVER['HTTP_HOST'] .  $_SERVER['REQUEST_URI'] ?>'; halfmoon.toggleModal('share-modal')}"></i><span class="sr-only">Aplikasi lainnya...</span></a>
+        </div>
+        <a onClick="document.getElementById('originalArticle').style.display = 'block'; document.getElementById('readerView').style.display = 'none';">View Original Article</a>
+    </div>
+    HTML;
+}
+
+function generate_url($p) {
     $res = '/index.php?p=' . $p;
     $keys = array_keys($_GET);
-    foreach ($keys as $key){
+    foreach ($keys as $key) {
         if ($key != 'p') $res .= '&' . $key . '=' . urlencode($_GET[$key]);
     }
     return $res;
@@ -336,7 +355,7 @@ function generate_url($p){
                                 <div class="px-20">
                                     <p class="m-0">
                                         <b>
-                                            <?php switch($article->type){
+                                            <?php switch($article->type) {
                                                 case 'ARTICLE':
                                                 case 'NEWS':
                                                     echo '<span class="badge badge-primary"><i class="bi bi-newspaper" aria-hidden="true"></i> ';
@@ -381,7 +400,7 @@ function generate_url($p){
                         <div class="content m-auto p-20" style="max-width: 50rem">
                             <p class="m-0">
                                 <b>
-                                    <?php switch($data[0]->type){
+                                    <?php switch($data[0]->type) {
                                         case 'ARTICLE':
                                         case 'NEWS':
                                             echo '<span class="badge badge-primary"><i class="bi bi-newspaper" aria-hidden="true"></i> ';
@@ -411,37 +430,11 @@ function generate_url($p){
                                     echo ($diff->days > 0 ? ($diff->days . ' days ') : '') . $diff->h . ' hours ago';
                                 ?>
                             </h5>
-                            <div class="alert px-15" role="alert">
-                                <h4 class="alert-heading font-weight-bold">Share to your friends:</h4>
-                                <div class="d-flex flex-wrap justify-content-between my-10">
-                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://wa.me/send?text=%2A<?= urlencode($data[0]->title) ?>%2A%0A<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #25D366"><i class="fa-lg fab fa-whatsapp" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">WhatsApp</span></a>
-                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://social-plugins.line.me/lineit/share?url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #06c755"><i class="fa-lg fab fa-line" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">LINE</span></a>
-                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://t.me/share/url?text=<?= urlencode($data[0]->title) ?>&amp;url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #54A9EB"><i class="fa-lg fab fa-telegram" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Telegram</span></a>
-                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://www.facebook.com/sharer/sharer.php?u=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #4267B2"><i class="fa-lg fab fa-facebook" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Facebook</span></a>
-                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://twitter.com/share?text=<?= urlencode($data[0]->title) ?>&amp;url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #1DA1F2"><i class="fa-lg fab fa-twitter" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Twitter</span></a>
-                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://www.linkedin.com/shareArticle?text=<?= urlencode($data[0]->title) ?>&amp;url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #0077B5"><i class="fa-lg fab fa-linkedin" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">LinkedIn</span></a>
-                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="mailto:?body=<?= urlencode($data[0]->title) ?> <?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #ff4d4f"><i class="fa-lg bi bi-envelope" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Email</span></a>
-                                    <a class="btn btn-square rounded-circle btn-lg"><i class="fa-lg bi bi-three-dots" aria-hidden="true" onclick="try{navigator.share({title: '<?= filter_var($data[0]->title, FILTER_SANITIZE_STRING) ?>',url: '<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>'})} catch(e) {document.getElementById('share-modal-url').value = '<?= 'http://' . $_SERVER['HTTP_HOST'] .  $_SERVER['REQUEST_URI'] ?>'; halfmoon.toggleModal('share-modal')}"></i><span class="sr-only">Aplikasi lainnya...</span></a>
-                                </div>
-                                <a onClick="document.getElementById('originalArticle').style.display = 'block'; document.getElementById('readerView').style.display = 'none';">View Original Article</a>
-                            </div>
+                            <?= generate_share_sheet() ?>
                             <div id="articlecontent">
                                 <?= $data[0]->content ?>
                             </div>
-                            <div class="alert px-15" role="alert">
-                                <h4 class="alert-heading font-weight-bold">Share to your friends:</h4>
-                                <div class="d-flex flex-wrap justify-content-between my-10">
-                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://wa.me/send?text=%2A<?= urlencode($data[0]->title) ?>%2A%0A<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #25D366"><i class="fa-lg fab fa-whatsapp" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">WhatsApp</span></a>
-                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://social-plugins.line.me/lineit/share?url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #06c755"><i class="fa-lg fab fa-line" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">LINE</span></a>
-                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://t.me/share/url?text=<?= urlencode($data[0]->title) ?>&amp;url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #54A9EB"><i class="fa-lg fab fa-telegram" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Telegram</span></a>
-                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://www.facebook.com/sharer/sharer.php?u=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #4267B2"><i class="fa-lg fab fa-facebook" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Facebook</span></a>
-                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://twitter.com/share?text=<?= urlencode($data[0]->title) ?>&amp;url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #1DA1F2"><i class="fa-lg fab fa-twitter" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Twitter</span></a>
-                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="https://www.linkedin.com/shareArticle?text=<?= urlencode($data[0]->title) ?>&amp;url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #0077B5"><i class="fa-lg fab fa-linkedin" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">LinkedIn</span></a>
-                                    <a class="text-white btn btn-square rounded-circle btn-lg" href="mailto:?body=<?= urlencode($data[0]->title) ?> <?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #ff4d4f"><i class="fa-lg bi bi-envelope" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">Email</span></a>
-                                    <a class="btn btn-square rounded-circle btn-lg"><i class="fa-lg bi bi-three-dots" aria-hidden="true" onclick="try{navigator.share({title: '<?= filter_var($data[0]->title, FILTER_SANITIZE_STRING) ?>',url: '<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>'})} catch(e) {document.getElementById('share-modal-url').value = '<?= 'http://' . $_SERVER['HTTP_HOST'] .  $_SERVER['REQUEST_URI'] ?>'; halfmoon.toggleModal('share-modal')}"></i><span class="sr-only">Aplikasi lainnya...</span></a>
-                                </div>
-                                <a onClick="document.getElementById('originalArticle').style.display = 'block'; document.getElementById('readerView').style.display = 'none';">View Original Article</a>
-                            </div>
+                            <?= generate_share_sheet() ?>
                             <script src="assets/beautify-article.js"></script>
                             <!-- Multiplex Ad -->
                             <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="ca-pub-6503953249125893" data-ad-slot="2529674116"></ins>
