@@ -51,7 +51,10 @@
                     } ?><?= $article->type ?></span>
                     <?= $article->author ?>
                 </b> &bull;
-                <?php require('./article_time.php'); ?>
+                <?php
+                    $_SESSION['article'] = $article;
+                    require('./article_time.php');
+                ?>
             </p>
             <h4 class="font-weight-bold"><?= $article->title ?></h4>
         </div>

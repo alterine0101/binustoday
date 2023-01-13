@@ -1,6 +1,6 @@
 <?php
     $article_time = new DateTime();
-    $article_time->setTimestamp($article->timestamp);
+    $article_time->setTimestamp($_SESSION['article']->timestamp);
     $now = new DateTime();
     $diff = $article_time->diff($now);
     if ($diff->days < 31) {

@@ -344,7 +344,10 @@ function generate_url($p) {
                             <h1 class="font-weight-bold article-title"><?= $data[0]->title ?></h1>
                             <h5>
                                 By <a href="/?author=<?= $data[0]->author ?>"><b><?= $data[0]->author ?></b></a> &bull;
-                                <?php require('components/article_time.php'); ?>
+                                <?php 
+                                    $_SESSION['article'] = $data[0];
+                                    require('components/article_time.php');
+                                ?>
                             </h5>
                             <?php require('components/share_sheet.php'); ?>
                             <div id="articlecontent">
