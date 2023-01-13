@@ -122,65 +122,9 @@ function generate_url($p){
     <!-- Google AdSense JS -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6503953249125893" crossorigin="anonymous"></script>
 
-    <style>
-        body {
-            font-size: 1.6rem;
-            font-family: "Open Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-        }
-        #card-container {
-            column-count: 3;
-        }
-
-        #card-container > * {
-            -webkit-column-break-inside: avoid;
-            display: inline-block;
-            width: 100% !important;
-            justify-items: center;
-        }
-
-        @media (max-width: 992px){
-            #card-container {
-                column-count: 2;
-            }
-        }
-        @media (max-width: 768px){
-            #card-container {
-                column-count: 1;
-            }
-        }
-        .placeholder-image {
-            width: 100%;
-        }
-        .placeholder-image img {
-            max-width: 80%;
-        }
-        body:not(.dark-mode) .placeholder-image {
-            background-color: #34AEE2;
-        }
-        body:not(.dark-mode) .placeholder-image.binus-tv {
-            background-color: #FFE53A;
-        }
-        body:not(.dark-mode) .placeholder-image.bvoice-radio {
-            background-color: #FAD620;
-        }
-        body:not(.dark-mode) .placeholder-image.filemagz {
-            background-color: #000000;
-        }
-        .article-title {
-            letter-spacing: -0.1125rem;
-        }
-        
-        .wp-block-image img {
-            width: 100%;
-            height: auto;
-        }
-
-        #articlecontent img {
-            max-width: 100%;
-        }
-    </style>
-    </head>
-    <body class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true" data-sidebar-shortcut-enabled="true" data-set-preferred-mode-onload="true">
+    <link rel="stylesheet" href="/assets/style.css" type="text/css" />
+</head>
+<body class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true" data-sidebar-shortcut-enabled="true" data-set-preferred-mode-onload="true">
     <!-- Modals go here -->
     <div class="modal" id="share-modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
