@@ -53,8 +53,8 @@ if (count($data) > 0) {
         $html_description = substr(strip_tags($data[0]->summary), 0, 160);
         if (strlen($data[0]->cover_image) > 0) $html_og_cover = $data[0]->cover_image;
         $html_canonical = $data[0]->id;
-        $more_articles_by_author = db::table('articles')->where('author', $data[0]->author)->where('id', '!=', $data[0]->id)->take(5)->orderBy('timestamp', 'desc')->get();
-        $more_articles_by_others = db::table('articles')->where('author', '!=', $data[0]->author)->where('id', '!=', $data[0]->id)->take(5)->orderBy('timestamp', 'desc')->get();
+        $more_articles_by_author = db::table('articles')->where('author', $data[0]->author)->where('id', '!=', $data[0]->id)->take(5)->inRandomOrder()->get();
+        $more_articles_by_others = db::table('articles')->where('author', '!=', $data[0]->author)->where('id', '!=', $data[0]->id)->take(5)->inRandomOrder()->get();
     } else if ($search !== false) {
         $html_title = 'Search results for ' . $search . ' - ' . $html_title;
     } else if ($author_search !== false) {
@@ -358,23 +358,17 @@ function generate_url($p) {
                             <!-- Multiplex Ad -->
                             <ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="ca-pub-6503953249125893" data-ad-slot="2529674116"></ins>
                         </div>
-                        <div class="container-fluid">
+                        <div class="container-fluid px-20">
                             <h2>More Articles</h2>
-                            <div class="row">
-                                <div class="col-sm">
-                                    <h5>From <?= $data[0]->author ?></h5>
-                                    <?php
-                                        $_SESSION['articles'] = $more_articles_by_author;
-                                        require('components/post_list.php');
-                                    ?>
-                                </div>
-                                <div class="col-sm">
-                                    <h5>From others</h5>
-                                    <?php
-                                        $_SESSION['articles'] = $more_articles_by_others;
-                                        require('components/post_list.php');
-                                    ?>
-                                </div>
+                            <div id="card-container">
+                                <?php
+                                    $_SESSION['articles'] = $more_articles_by_author;
+                                    require('components/post_list.php');
+                                ?>
+                                <?php
+                                    $_SESSION['articles'] = $more_articles_by_others;
+                                    require('components/post_list.php');
+                                ?>
                             </div>
                         </div>
                     </article>
