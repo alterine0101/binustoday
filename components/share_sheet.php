@@ -1,4 +1,4 @@
-<div class="alert px-15" role="alert">
+<div class="alert px-15" style="border-radius: 12px;" role="alert">
     <h4 class="alert-heading font-weight-bold">Share to your friends:</h4>
     <div class="d-flex flex-wrap justify-content-between my-10">
         <a class="text-white btn btn-square rounded-circle btn-lg" href="https://social-plugins.line.me/lineit/share?url=<?= 'http://' . $_SERVER['HTTP_HOST'] . urlencode($_SERVER['REQUEST_URI']) ?>" target="_blank" style="background-color: #06c755"><i class="fa-lg fab fa-line" aria-hidden="true" style="line-height: inherit;"></i><span class="sr-only">LINE</span></a>
