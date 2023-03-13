@@ -10,8 +10,8 @@ $enable_youtube = false;
 $youtube_only = false;
 
 global $argv;
-foreach ($argv as $arg){
-    switch($arg){
+foreach ($argv as $arg) {
+    switch($arg) {
         case '--youtube-only':
             $enable_youtube = true;
             $youtube_only = true;
@@ -35,44 +35,49 @@ $keys = array_keys($feeds);
 // Shuffle to minimize breakage
 shuffle($keys);
 
-for ($i = 0; $i < count($keys); $i++){
+for ($i = 0; $i < count($keys); $i++) {
     $key = $keys[$i];
-    if (!is_array($feeds[$key])){
+    if (!is_array($feeds[$key])) {
         $url = $feeds[$key];
         $feeds[$key] = [];
         array_push($feeds[$key], $url);
     }
 
-    for ($j = 0; $j < count($feeds[$key]); $j++){
+    for ($j = 0; $j < count($feeds[$key]); $j++) {
         $url = $feeds[$key][$j];
         print('Extracting ' . $url . PHP_EOL);
 
         $is_youtube = str_starts_with($url, 'https://www.youtube.com/');
 
-        if ($is_youtube && !$enable_youtube){
+        if ($is_youtube && !$enable_youtube) {
             print('Skipping YouTube RSS parsing to prevent detection of automated queries. See https://support.google.com/websearch/answer/86640.' . PHP_EOL . PHP_EOL);
             continue;
-        } else if (!$is_youtube && $youtube_only){
+        } else if (!$is_youtube && $youtube_only) {
             print('Skipping parsing as user only wants to parse YouTube feeds' . PHP_EOL . PHP_EOL);
             continue;
         }
 
         try {
             $context = stream_context_create($opts);
-            if ($is_youtube){
+            if ($is_youtube) {
                 $use_atom = true;
                 $url = str_replace('https://www.youtube.com/feeds/videos.xml?channel_id=', $yt_alt[rand(0, count($yt_alt) - 1)] . 'feed/channel/', $url);
                 print('Replacing URL to ' . $url . PHP_EOL);
             }
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, url); 
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+            $raw_feed = curl_exec($ch);
+
             $raw_feed = file_get_contents($url, false, $context);
-            if ($raw_feed === false) {
+            if (curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200) {
                 print('Skipping parsing as feed cannot be fetched');
                 continue;
             };
             $feed = simplexml_load_string($raw_feed);
             // $feed = simplexml_load_file($url);
 
-            if (isset($feed->entry)){
+            if (isset($feed->entry)) {
                 $entries = $feed->entry;
                 $use_atom = true;
             } elseif (isset($feed->feed) && isset($feed->feed->entry)) {
@@ -82,13 +87,13 @@ for ($i = 0; $i < count($keys); $i++){
                 $entries = $feed->channel->item;
                 $use_atom = false;
             }
-        } catch (Exception $e){
+        } catch (Exception $e) {
             // Skip
             print("ERROR" . PHP_EOL);
             continue;
         }
 
-        foreach ($entries as $entry){
+        foreach ($entries as $entry) {
             $item = [];
 
             // URL and title
@@ -100,7 +105,7 @@ for ($i = 0; $i < count($keys); $i++){
             $item['title'] = (string) $entry->title;
 
             // Description and YouTube detection
-            if (isset($entry->children('yt', TRUE)->videoId)){
+            if (isset($entry->children('yt', TRUE)->videoId)) {
                 $item['type'] = 'VIDEO';
                 $item['id'] = 'https://youtube.com/embed/' . ((string) $entry->children('yt', TRUE)->videoId);
                 $item['summary'] = 'YouTube Video';
@@ -139,8 +144,8 @@ for ($i = 0; $i < count($keys); $i++){
             print('| "' . $item['title'] . '" from ' . $item['author'] . PHP_EOL);
             $old_article = db::table('articles')->where('id', $item['id'])->first();
 
-            if ($old_article){
-                if ($old_article->misskey_note_id == null){
+            if ($old_article) {
+                if ($old_article->misskey_note_id == null) {
                     $item['misskey_note_id'] = post_to_misskey($item['title'], $item['author'], $item['link']);
                 }
                 db::table('articles')->where('id', $item['id'])->update($item);
@@ -158,27 +163,27 @@ for ($i = 0; $i < count($keys); $i++){
 // Extract WP-JSON feeds
 $keys = array_keys($feeds_wp_json);
 
-if (!$youtube_only) for ($i = 0; $i < count($keys); $i++){
+if (!$youtube_only) for ($i = 0; $i < count($keys); $i++) {
     $key = $keys[$i];
-    if (!is_array($feeds_wp_json[$key])){
+    if (!is_array($feeds_wp_json[$key])) {
         $url = $feeds_wp_json[$key];
         $feeds_wp_json[$key] = [];
         array_push($feeds_wp_json[$key], $url);
     }
 
-    for ($j = 0; $j < count($feeds_wp_json[$key]); $j++){
+    for ($j = 0; $j < count($feeds_wp_json[$key]); $j++) {
         $url = $feeds_wp_json[$key][$j];
         print('Extracting ' . $url . PHP_EOL);
 
         try {
             $entries = json_decode(implode(file($url)), true);
-        } catch (Exception $e){
+        } catch (Exception $e) {
             // Skip
             print("ERROR" . PHP_EOL);
             continue;
         }
 
-        foreach ($entries as $entry){
+        foreach ($entries as $entry) {
             $item = [];
 
             if ($entry['status'] !== 'publish') continue;
@@ -194,11 +199,11 @@ if (!$youtube_only) for ($i = 0; $i < count($keys); $i++){
             $item['timestamp'] = (int) strtotime($entry['date_gmt'] . " UTC");
             $item['author'] = $key;
 
-            if (isset($entry['_embedded']['wp:term'])) foreach ($entry['_embedded']['wp:term'] as $term){
+            if (isset($entry['_embedded']['wp:term'])) foreach ($entry['_embedded']['wp:term'] as $term) {
                 if (count($term) == 0) continue;
                 $term = $term[0];
                 
-                if ($term['taxonomy'] == 'category') switch ($term['slug']){
+                if ($term['taxonomy'] == 'category') switch ($term['slug']) {
                     case 'news':
                     case 'bnewshighlights': // BVoice Radio
                     case 'tech-news': // Filemagz
