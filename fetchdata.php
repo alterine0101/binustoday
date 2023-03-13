@@ -73,7 +73,7 @@ for ($i = 0; $i < count($keys); $i++) {
                 print('Skipping parsing as feed cannot be fetched');
                 continue;
             };
-            $feed = simplexml_load_string($raw_feed);
+            $feed = simplexml_load_string(trim($raw_feed));
             curl_close($curl);
             // $feed = simplexml_load_file($url);
 
