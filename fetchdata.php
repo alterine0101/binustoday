@@ -146,7 +146,7 @@ for ($i = 0; $i < count($keys); $i++) {
 
             if ($old_article) {
                 if ($old_article->misskey_note_id == null) {
-                    $item['misskey_note_id'] = post_to_misskey($item['title'], $item['author'], $item['link']);
+                    $item['misskey_note_id'] = post_to_misskey($item['title'], $item['author'], $item['id']);
                 }
                 db::table('articles')->where('id', $item['id'])->update($item);
             } else {
