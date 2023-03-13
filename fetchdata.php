@@ -69,12 +69,12 @@ for ($i = 0; $i < count($keys); $i++) {
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
             $raw_feed = curl_exec($ch);
 
-            $raw_feed = file_get_contents($url, false, $context);
             if (curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200) {
                 print('Skipping parsing as feed cannot be fetched');
                 continue;
             };
             $feed = simplexml_load_string($raw_feed);
+            curl_close($curl);
             // $feed = simplexml_load_file($url);
 
             if (isset($feed->entry)) {
