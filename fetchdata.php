@@ -65,7 +65,7 @@ for ($i = 0; $i < count($keys); $i++) {
                 print('Replacing URL to ' . $url . PHP_EOL);
             }
             $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, url); 
+            curl_setopt($ch, CURLOPT_URL, $url); 
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
             $raw_feed = curl_exec($ch);
 
