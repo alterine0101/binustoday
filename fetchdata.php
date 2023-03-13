@@ -1,5 +1,6 @@
 <?php
 require_once('./dbconnection.php');
+require_once('./socialposter.php');
 
 // Feed::$cacheDir = __DIR__ . '/tmp';
 // Feed::$cacheExpire = '5 hours';
@@ -24,7 +25,7 @@ foreach ($argv as $arg){
 $opts = [
     'http' => [
         'method' => "GET",
-        'header' => "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.126 Safari/537.36 Vivaldi/4.1.2369.11"
+        'header' => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Vivaldi/5.7.2921.53"
     ]
 ];
 
@@ -136,10 +137,17 @@ for ($i = 0; $i < count($keys); $i++){
             
             // print_r($item);
             print('| "' . $item['title'] . '" from ' . $item['author'] . PHP_EOL);
+            $old_article = db::table('articles')->where('id', $item['id'])->first();
 
-            if (db::table('articles')->where('id', $item['id'])->first()){
+            if ($old_article){
+                if ($old_article->misskey_note_id == null){
+                    $item['misskey_note_id'] = post_to_misskey($item['title'], $item['author'], $item['link']);
+                }
                 db::table('articles')->where('id', $item['id'])->update($item);
-            } else db::table('articles')->insert($item);
+            } else {
+                $item['misskey_note_id'] = post_to_misskey($item['title'], $item['author'], $item['id']);
+                db::table('articles')->insert($item);
+            }
         }
 
         print("DONE" . PHP_EOL . PHP_EOL);
@@ -203,10 +211,17 @@ if (!$youtube_only) for ($i = 0; $i < count($keys); $i++){
             
             // print_r($item);
             print('| "' . $item['title'] . '" from ' . $item['author'] . PHP_EOL);
+            $old_article = db::table('articles')->where('id', $item['id'])->first();
 
-            if (db::table('articles')->where('id', $item['id'])->first()){
+            if ($old_article) {
+                if ($old_article->misskey_note_id == null) {
+                    $item['misskey_note_id'] = post_to_misskey($item['title'], $item['author'], $item['id']);
+                }
                 db::table('articles')->where('id', $item['id'])->update($item);
-            } else db::table('articles')->insert($item);
+            } else {
+                $item['misskey_note_id'] = post_to_misskey($item['title'], $item['author'], $item['id']);
+                db::table('articles')->insert($item);
+            }
         }
         
         db::table('articles')->where('summary', '')->update(['summary' => null]);
