@@ -18,14 +18,17 @@ function post_to_misskey($title, $author, $url) {
   $curl = curl_init($url);
   curl_setopt($curl, CURLOPT_HEADER, false);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-  curl_setopt($curl, CURLOPT_HTTPHEADER,
-          array("Content-type: application/json"));
+  curl_setopt($curl, CURLOPT_HTTPHEADER, [
+    'Content-Type: application/json',
+    'Content-Length: ' . strlen($req_data),
+  ]);
   curl_setopt($curl, CURLOPT_POST, true);
   curl_setopt($curl, CURLOPT_POSTFIELDS, $req_data);
 
   $json_response = curl_exec($curl);
 
   $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+  print("| " . $json_response);
   curl_close($curl);
   if ($status == 200) {
     $res_data = json_decode($json_response);
