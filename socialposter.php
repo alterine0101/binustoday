@@ -6,7 +6,7 @@ function post_to_misskey($title, $author, $url) {
   $token = getenv('MISSKEY_TOKEN');
   if ($host == null || $token == null || strlen($host) == 0 || strlen($token) == 0) return null;
   
-  $url = "$host/api/notes/create";
+  $req_url = "$host/api/notes/create";
   $req_data = json_encode([
     'i' => $token,
     'text' => "$title\n\n$url",
@@ -15,7 +15,7 @@ function post_to_misskey($title, $author, $url) {
     "noExtractEmojis" => true,
   ]);
 
-  $curl = curl_init($url);
+  $curl = curl_init($req_url);
   curl_setopt($curl, CURLOPT_HEADER, false);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
   curl_setopt($curl, CURLOPT_HTTPHEADER, [
