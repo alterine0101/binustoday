@@ -64,12 +64,12 @@ for ($i = 0; $i < count($keys); $i++) {
                 $url = str_replace('https://www.youtube.com/feeds/videos.xml?channel_id=', $yt_alt[rand(0, count($yt_alt) - 1)] . 'feed/channel/', $url);
                 print('Replacing URL to ' . $url . PHP_EOL);
             }
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url); 
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-            $raw_feed = curl_exec($ch);
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url); 
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1); 
+            $raw_feed = curl_exec($curl);
 
-            if (curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200) {
+            if (curl_getinfo($curl, CURLINFO_HTTP_CODE) !== 200) {
                 print('Skipping parsing as feed cannot be fetched');
                 continue;
             };
