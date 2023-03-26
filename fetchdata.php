@@ -171,8 +171,11 @@ if (!$youtube_only) for ($i = 0; $i < count($keys); $i++) {
         array_push($feeds_wp_json[$key], $url);
     }
 
+    // Calculate number of articles which should be fetched
+    $multiplier = max(sqrt(sqrt(ceil(db::table('articles')->where('author', $key)->where('timestamp', '>=', ((int) strtotime($entry['date_gmt'] . " UTC")) - 30 * 24 * 60 * 60)))), 1);
+
     for ($j = 0; $j < count($feeds_wp_json[$key]); $j++) {
-        $url = $feeds_wp_json[$key][$j];
+        $url = $feeds_wp_json[$key][$j] . '&per_page=' . (5 * $multiplier);
         print('Extracting ' . $url . PHP_EOL);
 
         try {
